@@ -1,10 +1,11 @@
+
 public class Swap {
 
     /**
-     * обмен двух значений местами в массиве
+     * обмен значений местами в массиве
      * @param array массив
-     * @param first первое число на обмен
-     * @param second второе число на обмен
+     * @param first индекс первого значения
+     * @param second индекс второго значения
      * @return возвращает новый массив
      */
     public static int[] swap(int[] array,int first,int second){
