@@ -1,0 +1,13 @@
+
+
+public class Print {
+    /**
+     * вывод массива в консоль
+     * @param array массив
+     */
+    public static void print(int[] array){
+        for(int i=0;i<array.length;i++){
+            System.out.print(array[i]+" ");
+        }
+    }
+}
