@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AstonProd.iml" filepath="$PROJECT_DIR$/AstonProd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AstonProd.iml" filepath="$PROJECT_DIR$/AstonProd.iml" group="AstonProd" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AstonProd.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AstonProd.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AstonProd.test.iml" filepath="$PROJECT_DIR$/.idea/modules/AstonProd.test.iml" />
     </modules>
   </component>
 </project>
