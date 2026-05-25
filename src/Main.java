@@ -1,3 +1,9 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -12,12 +18,30 @@ public class Main {
             System.out.println("i = " + i);
         }
 
-        int[] array1={34,3,-43,23,64,1,4,-34,-4,21,54,1};
-        System.out.println("Not Sort");
-        Print.print(array1);
-        BubblesSort bubblesSort = new BubblesSort(array1);
-        bubblesSort.sort();
-        System.out.println("\nSort");
-        Print.print(array1);
+       /* Scanner scanner=new Scanner(System.in);
+        List<Student> students=new ArrayList<Student>();
+        while (true){
+            System.out.print("\nИмя студента: ");
+            String name=scanner.nextLine();
+            System.out.print("\nВозраст: ");
+            int age =scanner.nextInt();
+            System.out.print("\nНомер группы: ");
+            int group=scanner.nextInt();
+            System.out.print("\nСредний балл: ");
+            int averageScore=scanner.nextInt();
+            System.out.print("\nНомер зачетной книжки: ");
+            int numberReportCard=scanner.nextInt();
+            scanner.nextLine();
+            students.add(new Student(name,age,group,averageScore,numberReportCard));
+            System.out.print("\nХотите закончить пишем e, если нет любую другую клавишу: ");
+            String input=scanner.nextLine();
+            if(input.equals("e")){
+                break;
+            }
+        }
+        System.out.println("список студентов");
+        Print.print(students);
+        System.out.println("отсортируем по группе");*/
+
     }
 }
