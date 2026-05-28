@@ -6,10 +6,24 @@ import org.aston.prod.model.exception.NoCorrectName;
 
 import java.util.Objects;
 
+/**
+ * Представляет студента с именем, возрастом и номером группы.
+ * Класс неизменяемый (immutable), экземпляр создаётся через {@link StudentBuilder}.
+ * Реализует {@link Comparable} для сортировки: сначала по имени, затем по возрасту, затем по группе.
+ */
+
 public class Student implements Comparable<Student> {
     private final String name;
     private final int age;
     private final int group;
+
+    /**
+     * Приватный конструктор. Для создания экземпляра используйте {@link StudentBuilder}.
+     *
+     * @param name  имя студента
+     * @param age   возраст студента
+     * @param group номер группы студента
+     */
 
     private Student(String name, int age, int group) {
         this.name = name;
@@ -17,9 +31,25 @@ public class Student implements Comparable<Student> {
         this.group = group;
     }
 
+    /**
+     * Возвращает билдер для создания экземпляра {@link Student}.
+     *
+     * @return новый экземпляр {@link StudentBuilder}
+     */
+
     public static StudentBuilder builder() {
         return new StudentBuilder();
     }
+
+    /**
+     * Сравнивает студентов для упорядочивания.
+     * Порядок сравнения: имя (лексикографически), возраст (по возрастанию), группа (по возрастанию).
+     *
+     * @param o объект {@link Student} для сравнения
+     * @return отрицательное число, если этот объект меньше {@code o};
+     *         ноль, если объекты равны;
+     *         положительное число, если этот объект больше {@code o}
+     */
 
     @Override
     public int compareTo(Student o) {
@@ -36,10 +66,23 @@ public class Student implements Comparable<Student> {
         return 0;
     }
 
+    /**
+     * Вложенный класс-билдер для построения экземпляра {@link Student}.
+     * Позволяет задать имя, возраст и группу, выполняет валидацию при вызове {@link #build()}.
+     */
+
     public static class StudentBuilder {
         private String name;
         private int age;
         private int group;
+
+        /**
+         * Устанавливает имя студента.
+         *
+         * @param name имя студента, не должно быть {@code null}
+         * @return текущий экземпляр билдера
+         * @throws NoCorrectName если {@code name} равен {@code null}
+         */
 
         public StudentBuilder name(String name) {
             if (name == null)
@@ -48,15 +91,38 @@ public class Student implements Comparable<Student> {
             return this;
         }
 
+        /**
+         * Устанавливает возраст студента.
+         *
+         * @param age возраст студента
+         * @return текущий экземпляр билдера
+         */
+
         public StudentBuilder age(int age) {
             this.age = age;
             return this;
         }
 
+        /**
+         * Устанавливает номер группы студента.
+         *
+         * @param group номер группы
+         * @return текущий экземпляр билдера
+         */
+
         public StudentBuilder group(int group) {
             this.group = group;
             return this;
         }
+
+        /**
+         * Создаёт экземпляр {@link Student}, предварительно проверив корректность данных.
+         *
+         * @return новый объект {@link Student}
+         * @throws NoCorrectName  если имя {@code null}, короче 3 или длиннее 11 символов
+         * @throws NoCorrectAge   если возраст меньше 10 или больше 100
+         * @throws NoCorrectGroup если номер группы меньше или равен 0
+         */
 
         public Student build() {
             if (name == null || name.length() < 3 || name.length() > 11)
@@ -69,18 +135,41 @@ public class Student implements Comparable<Student> {
         }
     }
 
+    /**
+     * Возвращает имя студента.
+     *
+     * @return имя студента
+     */
 
     public String getName() {
         return name;
     }
 
+    /**
+     * Возвращает возраст студента.
+     *
+     * @return возраст студента
+     */
+
     public int getAge() {
         return age;
     }
 
+    /**
+     * Возвращает номер группы студента.
+     *
+     * @return номер группы
+     */
+
     public int getGroup() {
         return group;
     }
+
+    /**
+     * Формирует строковое представление объекта {@link Student}.
+     *
+     * @return строка вида {@code "Student{name='...', age=..., group=...}"}
+     */
 
     @Override
     public String toString() {
@@ -90,6 +179,13 @@ public class Student implements Comparable<Student> {
                 ", group=" + group +
                 '}';
     }
+    /**
+     * Сравнивает данный объект с другим на равенство.
+     * Два объекта {@link Student} равны, если у них одинаковые имя, возраст и группа.
+     *
+     * @param o объект для сравнения
+     * @return {@code true} если объекты равны, иначе {@code false}
+     */
 
     @Override
     public boolean equals(Object o) {
@@ -97,6 +193,12 @@ public class Student implements Comparable<Student> {
         Student student = (Student) o;
         return age == student.age && group == student.group && Objects.equals(name, student.name);
     }
+
+    /**
+     * Вычисляет хэш-код объекта на основе имени, возраста и группы.
+     *
+     * @return хэш-код
+     */
 
     @Override
     public int hashCode() {
