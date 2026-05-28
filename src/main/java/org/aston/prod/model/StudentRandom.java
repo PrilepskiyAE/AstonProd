@@ -2,8 +2,23 @@ package org.aston.prod.model;
 
 import java.util.Random;
 
+/**
+ * Утилитарный класс для генерации случайных объектов {@link Student}.
+ * Содержит методы для создания студента со случайными значениями имени, возраста и группы.
+ */
+
 public abstract class StudentRandom {
     private static final Random random = new Random();
+
+    /**
+     * Создаёт экземпляр {@link Student} со случайными данными.
+     * <p>
+     * Имя генерируется случайным образом (первая буква заглавная, остальные строчные),
+     * возраст — в диапазоне от 18 до 60 лет включительно,
+     * номер группы — от 1 до 9 включительно.
+     *
+     * @return новый объект {@link Student} с рандомными полями
+     */
 
     public static Student newRandomStudent() {
         return Student.builder()
@@ -12,6 +27,14 @@ public abstract class StudentRandom {
                 .group(random.nextInt(1, 10))
                 .build();
     }
+
+    /**
+     * Генерирует случайную строку для имени студента.
+     * Первая буква — заглавная латинская, остальные — строчные латинские.
+     * Длина строки — от 3 до 10 символов (первая буква + 2–9 дополнительных).
+     *
+     * @return случайное имя в виде строки
+     */
 
     private static String getRandomString() {
         return (char) random.nextInt('A', 'Z' + 1) +
