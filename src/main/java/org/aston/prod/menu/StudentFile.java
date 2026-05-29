@@ -1,4 +1,4 @@
-package org.aston.prod.sort;
+package org.aston.prod.menu;
 
 import org.aston.prod.model.Student;
 
@@ -27,7 +27,7 @@ public class StudentFile {
             }
         }
         catch (IOException e){
-            System.err.println("Error reading the file %s".formatted(e.getMessage()));
+            System.err.printf("Ошибка чтения файла. %s%n", e.getMessage());
         }
         return students;
     }
