@@ -1,4 +1,4 @@
-package org.aston.prod.sort;
+package org.aston.prod.menu;
 import org.aston.prod.model.Student;
 import java.util.List;
 

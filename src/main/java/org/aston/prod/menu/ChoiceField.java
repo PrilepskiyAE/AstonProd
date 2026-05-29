@@ -1,6 +1,7 @@
-package org.aston.prod.sort;
+package org.aston.prod.menu;
 
 import org.aston.prod.model.Student;
+import org.aston.prod.sort.BubblesSort;
 
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byName(List<Student> students) {
-        System.out.println("sorted by name:");
+        System.out.println("Сортируем по имени:");
         BubblesSort bs = new BubblesSort(students);
         bs.sort(students, Comparator.comparing(Student::getName));
         Print.printStudents(students);
@@ -23,7 +24,7 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byAge(List<Student> students) {
-        System.out.println("sorted by age:");
+        System.out.println("Сортируем по возрасту:");
         BubblesSort bs = new BubblesSort(students);
         bs.sort(students,Comparator.comparing(Student::getAge));
         Print.printStudents(students);
@@ -34,7 +35,7 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byGroup(List<Student> students) {
-        System.out.println("sorted by group:");
+        System.out.println("Сортируем по группе:");
         BubblesSort bs = new BubblesSort(students);
         bs.sort(students,Comparator.comparing(Student::getGroup));
         Print.printStudents(students);
