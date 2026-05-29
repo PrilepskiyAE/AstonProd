@@ -18,9 +18,8 @@ public class StudentFile {
      */
     public static List<Student> readFile() {
         List<Student> students = new ArrayList<>();
-        String line;
-        Path path = Paths.get("students.txt");
         try (BufferedReader br = new BufferedReader(new FileReader("students.txt"))) {
+            String line;
             while ((line=br.readLine())!=null){
                 String[] studentData=line.split(";");
                 String name=studentData[0];
@@ -30,7 +29,7 @@ public class StudentFile {
             }
         }
         catch (IOException e){
-            System.err.println("Ошибка чтения файла. %s".formatted(e.getMessage()));
+            System.err.printf("Ошибка чтения файла. %s%n", e.getMessage());
         }
         return students;
     }
