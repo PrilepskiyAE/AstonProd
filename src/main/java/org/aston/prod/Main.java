@@ -14,7 +14,7 @@ public class Main {
         while (true){
             Scanner scanner=new Scanner(System.in);
             List<Student> students=new ArrayList<>();
-            System.out.println("Select:\n\t1 Create the students manually\n\t2 Use random data to create students automatically\n\t" +
+            System.out.println("Select: \n\t1 Create the students manually\n\t2 Use random data to create students automatically\n\t" +
                     "Press any key to use the date from the file");
             String inputStudent=scanner.nextLine();
             if ("1".equals(inputStudent)) {
