@@ -14,8 +14,8 @@ public class Main {
         while (true){
             Scanner scanner=new Scanner(System.in);
             List<Student> students=new ArrayList<>();
-            System.out.println("lick 1 if you want to enter the students yourself, 2 if you want to use random,\n" +
-                    " any key if you use the file");
+            System.out.println("Select:\n\t1 Create the students manually\n\t2 Use random data to create students automatically\n\t" +
+                    "Press any key to use the date from the file");
             String inputStudent=scanner.nextLine();
             if ("1".equals(inputStudent)) {
                 students = InputStudent.inputConsole();
@@ -26,7 +26,7 @@ public class Main {
             else {
                 students=InputStudent.inputFile();
             }
-            System.out.println("list of students without sorting:");
+            System.out.println("List of students without sorting:");
             Print.printStudents(students);
             System.out.println("How to sort: by name - 1, by age - 2, by group - another key");
             String inputField=scanner.nextLine();
