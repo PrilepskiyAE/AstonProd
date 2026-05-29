@@ -11,12 +11,10 @@ public class Swap {
      * @param students коллекция
      * @param first индекс первого значения
      * @param second индекс второго значения
-     * @return возвращает коллекцию
      */
-    public static List<Student> swap(List<Student> students, int first, int second){
+    public static void swap(List<Student> students, int first, int second){
         Student temporary=students.get(first);
         students.set(first,students.get(second));
         students.set(second,temporary);
-        return students;
     }
 }

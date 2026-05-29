@@ -6,5 +6,5 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface SortStrategy {
-    List<Student> sort(List<Student> students, Comparator<Student> comparator);
+    void sort(List<Student> students, Comparator<Student> comparator);
 }

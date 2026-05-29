@@ -14,7 +14,7 @@ public class ChoiceField {
      */
     public static void byName(List<Student> students) {
         System.out.println("Сортируем по имени:");
-        BubblesSort bs = new BubblesSort(students);
+        BubblesSort bs = new BubblesSort();
         bs.sort(students, Comparator.comparing(Student::getName));
         Print.printStudents(students);
     }
@@ -25,7 +25,7 @@ public class ChoiceField {
      */
     public static void byAge(List<Student> students) {
         System.out.println("Сортируем по возрасту:");
-        BubblesSort bs = new BubblesSort(students);
+        BubblesSort bs = new BubblesSort();
         bs.sort(students,Comparator.comparing(Student::getAge));
         Print.printStudents(students);
     }
@@ -36,7 +36,7 @@ public class ChoiceField {
      */
     public static void byGroup(List<Student> students) {
         System.out.println("Сортируем по группе:");
-        BubblesSort bs = new BubblesSort(students);
+        BubblesSort bs = new BubblesSort();
         bs.sort(students,Comparator.comparing(Student::getGroup));
         Print.printStudents(students);
     }
