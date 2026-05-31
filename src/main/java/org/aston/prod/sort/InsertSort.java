@@ -4,7 +4,7 @@ import org.aston.prod.model.Student;
 import java.util.Comparator;
 import java.util.List;
 
-public class InsertSort implements SortStrategy{
+public class InsertSort implements SortStrategy {
 
     /**
      * сортировка вставками

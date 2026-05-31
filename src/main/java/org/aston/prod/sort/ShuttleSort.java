@@ -5,7 +5,7 @@ import org.aston.prod.model.Student;
 import java.util.Comparator;
 import java.util.List;
 
-public class ShuttleSort implements SortStrategy{
+public class ShuttleSort implements SortStrategy {
 
     /**
      * челночная сортировка

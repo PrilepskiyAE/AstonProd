@@ -18,11 +18,11 @@ public class ChoiceField {
     public static void byName(List<Student> students) {
         System.out.println("""
                 Какую сортировку предпочитаете?
-                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную""");
+                1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную, 5 - Шелла""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по имени ");
-        SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getName));
+        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getName));
         Print.printStudents(students);
     }
 
@@ -33,11 +33,11 @@ public class ChoiceField {
     public static void byAge(List<Student> students) {
         System.out.println("""
                 Какую сортировку предпочитаете?
-                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную""");
+                1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную, 5 - Шелла""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
-        SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getAge));
+        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getAge));
         Print.printStudents(students);
     }
 
@@ -48,11 +48,11 @@ public class ChoiceField {
     public static void byGroup(List<Student> students) {
         System.out.println("""
                 Какую сортировку предпочитаете?
-                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную""");
+                1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную, 5 - Шелла""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по группе ");
-        SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getGroup));
+        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getGroup));
         Print.printStudents(students);
     }
 }
@@ -61,27 +61,32 @@ class SelectionSort {
 
     /**
      * выбор сортировки
-     * @param students коллекция студентов
      * @param numberSort ноиер сортировки
      * @return возвращаем выбранную сортировку
      */
-    public static StrategyActivator sort(List<Student> students, String numberSort) {
+    public static StrategyActivator sort(String numberSort) {
         StrategyActivator activator = new StrategyActivator();
-        if(numberSort.equals("1")) {
-            System.out.println("пузырьками:");
-            activator.setSortStrategy(new BubblesSort());
-        }
-        else if(numberSort.equals("2")) {
-            System.out.println("выбором:");
-            activator.setSortStrategy(new ChoiceSort());
-        }
-        else if(numberSort.equals("3")) {
-            System.out.println("вставками:");
-            activator.setSortStrategy(new InsertSort());
-        }
-        else if(numberSort.equals("4")) {
-            System.out.println("челночной сортировкой:");
-            activator.setSortStrategy(new ShuttleSort());
+        switch (numberSort) {
+            case "1" -> {
+                System.out.println("пузырьками:");
+                activator.setSortStrategy(new BubblesSort());
+            }
+            case "2" -> {
+                System.out.println("выбором:");
+                activator.setSortStrategy(new ChoiceSort());
+            }
+            case "3" -> {
+                System.out.println("вставками:");
+                activator.setSortStrategy(new InsertSort());
+            }
+            case "4" -> {
+                System.out.println("челночной сортировкой:");
+                activator.setSortStrategy(new ShuttleSort());
+            }
+            case "5" ->{
+                System.out.println("сортировкой Шелла:");
+                activator.setSortStrategy(new ShuttleSort());
+            }
         }
         return activator;
     }
