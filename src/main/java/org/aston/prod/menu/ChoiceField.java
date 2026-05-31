@@ -9,10 +9,11 @@ import java.util.Scanner;
 
 public class ChoiceField {
 
-    private final static Scanner scanner=new Scanner(System.in);
+    private final static Scanner scanner = new Scanner(System.in);
 
     /**
      * сортируем по имени
+     *
      * @param students коллекция студентов
      */
     public static void byName(List<Student> students) {
@@ -20,14 +21,15 @@ public class ChoiceField {
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
                 4 - челночную, 5 - Шелла""");
-        String inputSort=scanner.nextLine();
+        String inputSort = scanner.nextLine();
         System.out.print("Сортируем по имени ");
-        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getName));
+        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getName));
         Print.printStudents(students);
     }
 
     /**
      * сортируем по возрасту
+     *
      * @param students коллекция студентов
      */
     public static void byAge(List<Student> students) {
@@ -35,14 +37,15 @@ public class ChoiceField {
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
                 4 - челночную, 5 - Шелла""");
-        String inputSort=scanner.nextLine();
+        String inputSort = scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
-        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getAge));
+        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getAge));
         Print.printStudents(students);
     }
 
     /**
      * сортируем по группе
+     *
      * @param students коллекция студентов
      */
     public static void byGroup(List<Student> students) {
@@ -50,9 +53,9 @@ public class ChoiceField {
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
                 4 - челночную, 5 - Шелла""");
-        String inputSort=scanner.nextLine();
+        String inputSort = scanner.nextLine();
         System.out.print("Сортируем по группе ");
-        SelectionSort.sort(inputSort).StartSort(students,Comparator.comparing(Student::getGroup));
+        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getGroup));
         Print.printStudents(students);
     }
 }
@@ -61,6 +64,7 @@ class SelectionSort {
 
     /**
      * выбор сортировки
+     *
      * @param numberSort ноиер сортировки
      * @return возвращаем выбранную сортировку
      */
@@ -83,7 +87,7 @@ class SelectionSort {
                 System.out.println("челночной сортировкой:");
                 activator.setSortStrategy(new ShuttleSort());
             }
-            case "5" ->{
+            case "5" -> {
                 System.out.println("сортировкой Шелла:");
                 activator.setSortStrategy(new ShuttleSort());
             }
