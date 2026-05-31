@@ -1,10 +1,7 @@
 package org.aston.prod.menu;
 
 import org.aston.prod.model.Student;
-import org.aston.prod.sort.BubblesSort;
-import org.aston.prod.sort.ChoiceSort;
-import org.aston.prod.sort.InsertSort;
-import org.aston.prod.sort.StrategyActivator;
+import org.aston.prod.sort.*;
 
 import java.util.Comparator;
 import java.util.List;
@@ -19,7 +16,10 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byName(List<Student> students) {
-        System.out.println("Какую сортировку предпочитаете?\n 1 - пузырьками, 2 - выбором, 3 - вставками");
+        System.out.println("""
+                Какую сортировку предпочитаете?
+                 1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по имени ");
         SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getName));
@@ -31,7 +31,10 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byAge(List<Student> students) {
-        System.out.println("Какую сортировку предпочитаете?\n 1- пузырьками, 2- выбором, 3 - вставками");
+        System.out.println("""
+                Какую сортировку предпочитаете?
+                 1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
         SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getAge));
@@ -43,7 +46,10 @@ public class ChoiceField {
      * @param students коллекция студентов
      */
     public static void byGroup(List<Student> students) {
-        System.out.println("Какую сортировку предпочитаете?\n 1- пузырьками, 2- выбором, 3 - вставками");
+        System.out.println("""
+                Какую сортировку предпочитаете?
+                 1- пузырьками, 2- выбором, 3 - вставками,
+                4 - челночную""");
         String inputSort=scanner.nextLine();
         System.out.print("Сортируем по группе ");
         SelectionSort.sort(students,inputSort).StartSort(students,Comparator.comparing(Student::getGroup));
@@ -72,6 +78,10 @@ class SelectionSort {
         else if(numberSort.equals("3")) {
             System.out.println("вставками:");
             activator.setSortStrategy(new InsertSort());
+        }
+        else if(numberSort.equals("4")) {
+            System.out.println("челночной сортировкой:");
+            activator.setSortStrategy(new ShuttleSort());
         }
         return activator;
     }

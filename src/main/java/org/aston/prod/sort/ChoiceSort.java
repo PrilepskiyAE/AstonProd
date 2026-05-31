@@ -12,7 +12,6 @@ public class ChoiceSort implements SortStrategy{
      * @param students коллекция студентов
      * @param comparator компаратор
      */
-    @Override
     public void sort(List<Student> students,Comparator<Student> comparator) {
         int size = students.size();
         for(int i = 0; i < size - 1;i++) {

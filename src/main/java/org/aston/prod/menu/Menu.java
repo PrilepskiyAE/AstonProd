@@ -13,10 +13,8 @@ public class Menu {
             Scanner scanner=new Scanner(System.in);
             List<Student> students=new ArrayList<>();
             System.out.println("""
-                    Нажмите 1, если ввод студентов через консоль\
-                    
-                    2 - если рандомный ввод\
-                    
+                    Нажмите 1, если ввод студентов через консоль
+                    2 - если рандомный ввод
                     любая другая клавиша - чтение студентов из файла""");
             String inputStudent=scanner.nextLine();
             if ("1".equals(inputStudent)) {
