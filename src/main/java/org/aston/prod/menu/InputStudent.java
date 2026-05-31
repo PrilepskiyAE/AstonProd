@@ -9,16 +9,17 @@ import java.util.Scanner;
 
 public class InputStudent {
 
-    private static List<Student> students=new ArrayList<>();
-    private final static Scanner scanner=new Scanner(System.in);
+    private static List<Student> students = new ArrayList<>();
+    private final static Scanner scanner = new Scanner(System.in);
 
     /**
      * ввод с клавиатуры
+     *
      * @return возвращает коллекцию студентов
      */
     public static List<Student> inputConsole() {
         System.out.print("Сколько студентов будет: ");
-        int size=scanner.nextInt();
+        int size = scanner.nextInt();
         for (int i = 0; i < size; i++) {
             scanner.nextLine();
             System.out.print("\nИмя: ");
@@ -34,11 +35,12 @@ public class InputStudent {
 
     /**
      * рандомное заполнение студентов
+     *
      * @return возвращает коллекцию студентов
      */
     public static List<Student> inputRandom() {
         System.out.println("Сколько студентов будет?");
-        int size=scanner.nextInt();
+        int size = scanner.nextInt();
         for (int i = 0; i < size; i++) {
             students.add(StudentRandom.newRandomStudent());
         }
@@ -47,10 +49,11 @@ public class InputStudent {
 
     /**
      * заполнение студентов из файла
+     *
      * @return возвращает коллекцию студентов
      */
     public static List<Student> inputFile() {
-        students= StudentFile.readFile();
+        students = StudentFile.readFile();
         return students;
     }
 }
