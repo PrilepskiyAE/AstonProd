@@ -1,8 +1,9 @@
 package org.aston.prod;
 
 import org.aston.prod.additionalTasks.WriteInFile;
+import org.aston.prod.menu.StudentFile;
 import org.aston.prod.model.Student;
-import org.aston.prod.model.StudentRandom;
+import org.aston.prod.input.StudentRandom;
 
 import java.util.ArrayList;
 
@@ -18,5 +19,9 @@ public class Main {
 
         WriteInFile wf = new WriteInFile();
         wf.writeInFile(students, "students");
+
+
+
+
     }
 }
