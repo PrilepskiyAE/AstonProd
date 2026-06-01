@@ -1,5 +1,5 @@
 import org.aston.prod.model.Student;
-import org.aston.prod.model.StudentRandom;
+import org.aston.prod.input.StudentRandom;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;

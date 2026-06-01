@@ -23,7 +23,7 @@ public class ChoiceField {
                 4 - челночную, 5 - Шелла""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по имени ");
-        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getName));
+        SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getName));
         Print.printStudents(students);
     }
 
@@ -39,7 +39,7 @@ public class ChoiceField {
                 4 - челночную, 5 - Шелла""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
-        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getAge));
+        SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getAge));
         Print.printStudents(students);
     }
 
@@ -55,7 +55,7 @@ public class ChoiceField {
                 4 - челночную, 5 - Шелла""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по группе ");
-        SelectionSort.sort(inputSort).StartSort(students, Comparator.comparing(Student::getGroup));
+        SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getGroup));
         Print.printStudents(students);
     }
 }
