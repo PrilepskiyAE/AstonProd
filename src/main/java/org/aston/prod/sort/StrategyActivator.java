@@ -14,7 +14,7 @@ public class StrategyActivator {
      * @param students коллекция студентов
      * @param comparator компаратор
      */
-    public void StartSort(List<Student> students, Comparator<Student> comparator) {
+    public void startSort(List<Student> students, Comparator<Student> comparator) {
         sortStrategy.sort(students, comparator);
     }
 
