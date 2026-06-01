@@ -1,7 +1,6 @@
 package org.aston.prod.menu;
 
 import org.aston.prod.model.Student;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +16,15 @@ public class StudentFile {
      */
     public static List<Student> readFile() {
         List<Student> students = new ArrayList<>();
+        /*JsonMapper mapper = new JsonMapper();
+        File file = new File("students.txt");
+        try(MappingIterator<Student> iterator = mapper.readerFor(Student.class).readValues(file)) {
+            while(iterator.hasNext()){
+                students.add(iterator.nextValue());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
         try (BufferedReader br = new BufferedReader(new FileReader("students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
