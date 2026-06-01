@@ -13,7 +13,6 @@ import java.util.List;
 
 public class WriteInFile {
 
-
     public void writeInFile(List<Student> studentList, String fileName) {
         JsonMapper mapper = new JsonMapper();
         Path path = Path.of("src/main/resources/" + fileName + ".jsonl");

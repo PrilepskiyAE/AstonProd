@@ -3,6 +3,8 @@ package org.aston.prod.model;
 import org.aston.prod.model.exception.NoCorrectAge;
 import org.aston.prod.model.exception.NoCorrectGroup;
 import org.aston.prod.model.exception.NoCorrectName;
+import tools.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ import java.util.Objects;
  * Реализует {@link Comparable} для сортировки: сначала по имени, затем по возрасту, затем по группе.
  */
 
+@JsonDeserialize(builder = Student.StudentBuilder.class)
 public class Student implements Comparable<Student> {
     private final String name;
     private final int age;
@@ -71,6 +74,7 @@ public class Student implements Comparable<Student> {
      * Позволяет задать имя, возраст и группу, выполняет валидацию при вызове {@link #build()}.
      */
 
+    @JsonPOJOBuilder(withPrefix ="")
     public static class StudentBuilder {
         private String name;
         private int age;

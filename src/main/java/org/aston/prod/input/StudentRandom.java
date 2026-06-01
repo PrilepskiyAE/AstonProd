@@ -1,5 +1,8 @@
-package org.aston.prod.model;
+package org.aston.prod.input;
 
+import org.aston.prod.model.Student;
+
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -9,6 +12,12 @@ import java.util.Random;
 
 public abstract class StudentRandom {
     private static final Random random = new Random();
+
+    public static void addRandomStudentsInList(List<Student> studentList, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            studentList.add(newRandomStudent());
+        }
+    }
 
     /**
      * Создаёт экземпляр {@link Student} со случайными данными.

@@ -1,7 +1,7 @@
 package org.aston.prod.menu;
 
 import org.aston.prod.model.Student;
-import org.aston.prod.model.StudentRandom;
+import org.aston.prod.input.StudentRandom;
 
 import java.util.ArrayList;
 import java.util.List;
