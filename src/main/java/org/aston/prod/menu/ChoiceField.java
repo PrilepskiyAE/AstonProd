@@ -20,7 +20,7 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла""");
+                4 - челночную, 5 - Шелла, 6 - слиянием""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по имени ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getName));
@@ -36,7 +36,7 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла""");
+                4 - челночную, 5 - Шелла, 6 - слиянием""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getAge));
@@ -52,7 +52,7 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла""");
+                4 - челночную, 5 - Шелла, 6 - слиянием""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по группе ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getGroup));
@@ -89,6 +89,10 @@ class SelectionSort {
             }
             case "5" -> {
                 System.out.println("сортировкой Шелла:");
+                activator.setSortStrategy(new ShuttleSort());
+            }
+            case "6" -> {
+                System.out.println("слиянием:");
                 activator.setSortStrategy(new ShuttleSort());
             }
         }
