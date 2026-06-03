@@ -1,6 +1,7 @@
 package org.aston.prod.additionalTasks;
 
 import org.aston.prod.model.Student;
+import tools.jackson.core.JacksonException;
 import tools.jackson.databind.SequenceWriter;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -25,8 +26,9 @@ public class WriteInFile {
                 sequenceWriter.write(student);
             }
             sequenceWriter.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException | JacksonException e) {
+            System.out.println("В процессе записи возникла ошибка " + e.getMessage());
+            System.out.println("Повторите попытку записи еще раз");
         }
     }
 }
