@@ -9,6 +9,10 @@ public class StrategyActivator {
 
    private SortStrategy sortStrategy;
 
+    public StrategyActivator() {
+        this.sortStrategy = new BubblesSort();
+    }
+
     /**
      * начало сортировки
      * @param students коллекция студентов
