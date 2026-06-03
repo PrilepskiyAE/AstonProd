@@ -111,7 +111,7 @@ public class InputStudent {
      * </pre>
      */
     public static List<Student> inputFile() {
-        students = StudentFile.readFile();
+        students = StudentFile2.readFile(); // 2- Евг
         return students;
     }
 }
