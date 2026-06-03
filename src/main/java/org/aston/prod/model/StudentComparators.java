@@ -105,9 +105,8 @@ public abstract class StudentComparators {
      * @return возвращаем результат сравнения
      */
     private static int compareInt(int x, int y) {
-        if (x > y) return 1;
-        else if (x == y) return 0;
-        else return -1;
+        if (x == y) return 0;
+        return x > y ? 1 : -1;
     }
 
     /**
@@ -116,7 +115,13 @@ public abstract class StudentComparators {
      * @return {@link Comparator} для сортировки по имени
      */
     public static Comparator<Student> byName() {
-        return (o1, o2) -> o1.getName().compareTo(o2.getName());
+        return (o1, o2) -> {
+            int result = o1.getName().compareTo(o2.getName());
+            if (result != 0) return result;
+            result = compareInt(o1.getAge(), o2.getAge());
+            if (result != 0) return result;
+            return compareInt(o1.getGroup(), o2.getGroup());
+        };
     }
 
     /**
@@ -125,7 +130,13 @@ public abstract class StudentComparators {
      * @return {@link Comparator} для сортировки по возрасту
      */
     public static Comparator<Student> byAge() {
-        return (o1, o2) -> compareInt(o1.getAge(), o2.getAge());
+        return (o1, o2) -> {
+            int result = compareInt(o1.getAge(), o2.getAge());
+            if (result != 0) return result;
+            result = compareInt(o1.getGroup(), o2.getGroup());
+            if (result != 0) return result;
+            return o1.getName().compareTo(o2.getName());
+        };
     }
 
     /**
@@ -134,6 +145,14 @@ public abstract class StudentComparators {
      * @return {@link Comparator} для сортировки по номеру группы
      */
     public static Comparator<Student> byGroup() {
-        return (o1, o2) -> compareInt(o1.getGroup(), o2.getGroup());
+        return (o1, o2) -> {
+            int result = compareInt(o1.getGroup(), o2.getGroup());
+            if (result != 0) return result;
+            result = o1.getName().compareTo(o2.getName());
+            if (result != 0) return result;
+            return compareInt(o1.getAge(), o2.getAge());
+
+        };
+
     }
 }
