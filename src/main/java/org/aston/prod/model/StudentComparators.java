@@ -14,12 +14,12 @@ public abstract class StudentComparators {
      * Возвращает компаратор, сортирующий по всем 3 полям класса студент по выбору пользователя.
      * Натуральный или обратный порядок сортировки так же выбирает пользователь.
      *
+     * @param scanner принимаем сканер для получения введенных пользователем значений
      * @return {@link Comparator} для сортировки по выбору пользователя
      */
     public static Comparator<Student> customComparator(Scanner scanner) {
-        List<String> queue = queueCompare(scanner);
-
         return ((o1, o2) -> {
+            List<String> queue = queueCompare(scanner);
             int result = 0;
             for (String s : queue) {
                 int multiplication = 1;
@@ -28,15 +28,9 @@ public abstract class StudentComparators {
                     s = s.substring(1);
                 }
                 switch (s) {
-                    case "1" -> {
-                        result = o1.getName().compareTo(o2.getName()) * multiplication;
-                    }
-                    case "2" -> {
-                        result = compareInt(o1.getAge(), o2.getAge()) * multiplication;
-                    }
-                    case "3" -> {
-                        result = compareInt(o1.getGroup(), o2.getGroup()) * multiplication;
-                    }
+                    case "1" -> result = o1.getName().compareTo(o2.getName()) * multiplication;
+                    case "2" -> result = compareInt(o1.getAge(), o2.getAge()) * multiplication;
+                    case "3" -> result = compareInt(o1.getGroup(), o2.getGroup()) * multiplication;
                 }
                 if (result != 0)
                     break;
@@ -48,6 +42,7 @@ public abstract class StudentComparators {
     /**
      * Спрашиваем у пользователя в каком порядке он хочет отсортировать коллекцию
      *
+     * @param scanner принимаем сканер для получения введенных пользователем значений
      * @return {@link List} список в котором указан порядок сортировки
      */
 
@@ -89,6 +84,8 @@ public abstract class StudentComparators {
 
     /**
      * Выводим значения мапы отдельным методом, чтобы избежать дублирования кода
+     *
+     * @param textMap принимаем мапу со значениями которые будем выводить в консоль
      */
 
     private static void mapToConsole(Map<String, String> textMap) {
@@ -103,6 +100,8 @@ public abstract class StudentComparators {
     /**
      * Сравниваем числовые значения
      *
+     * @param x первое число для сравнения
+     * @param y второе число для сравнения
      * @return возвращаем результат сравнения
      */
     private static int compareInt(int x, int y) {
