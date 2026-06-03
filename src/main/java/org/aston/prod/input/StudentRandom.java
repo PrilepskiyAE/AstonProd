@@ -10,6 +10,8 @@ import java.util.Random;
  * Содержит методы для создания студента со случайными значениями имени, возраста и группы.
  */
 
+
+
 public abstract class StudentRandom {
     private static final Random random = new Random();
 
