@@ -7,7 +7,7 @@ import java.util.List;
 public class Swap {
 
     /**
-     * обмен значениями в коллекции
+     * Обмен значениями в коллекции
      *
      * @param students коллекция
      * @param first    индекс первого значения

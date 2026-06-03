@@ -6,15 +6,31 @@ import org.aston.prod.sort.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+/**
+ * Утилитарный класс для интерактивного выбора параметров сортировки студентов.
+ * <p>
+ * Предоставляет методы для сортировки студентов по различным критериям (имя, возраст, группа)
+ * с возможностью выбора алгоритма сортировки через консольный интерфейс.
+ */
 
 public class ChoiceField {
 
     private final static Scanner scanner = new Scanner(System.in);
 
     /**
-     * сортируем по имени
+     * Сортирует студентов по имени с выбором алгоритма сортировки через консоль.
+     * <p>
+     * Алгоритм:
+     * <ol>
+     *   <li>Выводит меню выбора алгоритма сортировки.</li>
+     *   <li>Считывает выбор пользователя.</li>
+     *   <li>Выполняет сортировку с использованием выбранного алгоритма.</li>
+     *   <li>Выводит отсортированный список студентов.</li>
+     * </ol>
      *
-     * @param students коллекция студентов
+     * @param students список студентов для сортировки (модифицируется в процессе)
+     * @throws IllegalArgumentException если введён неверный номер сортировки
+     * @see SelectionSort#sort(String) для доступных алгоритмов сортировки
      */
     public static void byName(List<Student> students) {
         System.out.println("""
@@ -28,9 +44,11 @@ public class ChoiceField {
     }
 
     /**
-     * сортируем по возрасту
+     * Сортирует студентов по возрасту с выбором алгоритма сортировки через консоль.
      *
-     * @param students коллекция студентов
+     * @param students список студентов для сортировки (модифицируется в процессе)
+     * @throws IllegalArgumentException если введён неверный номер сортировки
+     * @see SelectionSort#sort(String)
      */
     public static void byAge(List<Student> students) {
         System.out.println("""
@@ -44,9 +62,11 @@ public class ChoiceField {
     }
 
     /**
-     * сортируем по группе
+     * Сортирует студентов по группе с выбором алгоритма сортировки через консоль.
      *
-     * @param students коллекция студентов
+     * @param students список студентов для сортировки (модифицируется в процессе)
+     * @throws IllegalArgumentException если введён неверный номер сортировки
+     * @see SelectionSort#sort(String)
      */
     public static void byGroup(List<Student> students) {
         System.out.println("""
@@ -59,15 +79,32 @@ public class ChoiceField {
         Print.printStudents(students);
     }
 }
-
+/**
+ * Утилитарный класс для выбора алгоритма сортировки по номеру.
+ * <p>
+ * Реализует фабричный метод, возвращающий {@link StrategyActivator} с настроенной
+ * стратегией сортировки в зависимости от ввода пользователя.
+ */
 class SelectionSort {
 
     /**
-     * выбор сортировки
+     * Создаёт и настраивает {@link StrategyActivator} с выбранной стратегией сортировки.
+     * <p>
+     * Поддерживаемые алгоритмы:
+     * <ul>
+     *   <li><b>1</b> — сортировка пузырьком ({@link BubblesSort})</li>
+     *   <li><b>2</b> — сортировка выбором ({@link ChoiceSort})</li>
+     *   <li><b>3</b> — сортировка вставками ({@link InsertSort})</li>
+     *   <li><b>4</b> — челночная сортировка ({@link ShuttleSort})</li>
+     *   <li><b>5</b> — сортировка Шелла ({@link ShellSort})</li>
+     * </ul>
      *
-     * @param numberSort ноиер сортировки
-     * @return возвращаем выбранную сортировку
+     * @param numberSort строка с номером сортировки (1–5)
+     * @return {@link StrategyActivator} с установленной стратегией сортировки
+     * @throws IllegalArgumentException если номер не соответствует допустимым значениям
+     * @see StrategyActivator#setSortStrategy(SortStrategy)
      */
+
     public static StrategyActivator sort(String numberSort) {
         StrategyActivator activator = new StrategyActivator();
         switch (numberSort) {

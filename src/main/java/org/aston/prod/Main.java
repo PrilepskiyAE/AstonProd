@@ -1,8 +1,8 @@
 package org.aston.prod;
 
 import org.aston.prod.additionalTasks.WriteInFile;
+import org.aston.prod.input.StudentRandom;
 import org.aston.prod.model.Student;
-import org.aston.prod.model.StudentRandom;
 
 import java.util.ArrayList;
 
