@@ -1,0 +1,9 @@
+Anna;18;234
+Mihail;24;235
+Evgeny;25;237
+Leonid;17;124
+Marya;28;238
+Oleg;37;129
+Alexandr;58;28
+Nikolai;47;24
+Polina;25;235
