@@ -175,6 +175,16 @@ public class Student implements Comparable<Student> {
                 throw new NoCorrectAge("Возраст студента должен быть от 10 до 100 лет");
             if (group < 1)
                 throw new NoCorrectGroup("Номер группы не может быть отрицательный или равен нулю");
+        //
+            if (!(name.matches("^[\\p{L}]+$"))) {
+                throw new NoCorrectName("Имя должно содержать только символы алфавита");
+            }
+            if (!Character.isUpperCase(name.charAt(0))) {
+                throw new NoCorrectName("Имя должно начинаться с большой буквы");
+            }
+        //
+
+
             return new Student(name, age, group);
         }
     }
