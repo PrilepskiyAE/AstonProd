@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 //**************
 
 /**
@@ -14,6 +13,7 @@ import java.util.Scanner;
  * Формат ввода одной строки: Имя;возраст;группа
  * Ввод заканчивается пустой строкой.
  */
+
 public class StudentsFromConsole {
 
     /**
