@@ -89,11 +89,11 @@ class SelectionSort {
             }
             case "5" -> {
                 System.out.println("сортировкой Шелла:");
-                activator.setSortStrategy(new ShuttleSort());
+                activator.setSortStrategy(new ShellSort());
             }
             case "6" -> {
                 System.out.println("слиянием:");
-                activator.setSortStrategy(new ShuttleSort());
+                activator.setSortStrategy(new MergeSort());
             }
         }
         return activator;

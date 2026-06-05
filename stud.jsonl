@@ -1,9 +1,7 @@
 {"name": "Anna", "age": 40, "group": 23}
 {"name": "Mihail", "age": 30, "group": 23}
 {"name": "Evgeny", "age": 20, "group": 23}
-{"name": "Leonid", "age": 17, "group": 12}
-{"name": "Marya", "age": 28, "group": 23}
 {"name": "Oleg", "age": 37, "group": 12}
-{"name": "Alexandr", "age": 58, "group": 28}
-{"name": "Nikolai", "age": 47, "group": 24}
 {"name": "Polina", "age": 25, "group": 23}
+{"name": "Marya", "age": 28, "group": 23}
+{"name": "Alexandr", "age": 58, "group": 28}
