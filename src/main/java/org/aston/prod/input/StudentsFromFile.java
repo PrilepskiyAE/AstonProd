@@ -1,15 +1,19 @@
-package org.aston.prod.input;
+// пятнецо!     05-06-2026
 
+
+package org.aston.prod.input;
 
 import org.aston.prod.model.Student;
 import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.json.JsonMapper;
 
+/* import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.json.JsonMapper; /**/
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Класс для чтения списка студентов из JSONL-файла.
@@ -22,15 +26,28 @@ public class StudentsFromFile {
      * Читает студентов из JSONL-файла, расположенного в папке src/main/resources.
      * Некорректные записи (невалидные поля или ошибка десериализации) пропускаются,
      * о них выводится предупреждение в консоль.
+     * Если файл не найден или пуст, выводится сообщение об ошибке и возвращается пустой список.
      *
      * @param fileName имя файла без расширения (расширение .jsonl добавится автоматически)
-     * @return список валидных студентов, прочитанных из файла
-     * @throws IOException если файл не найден или произошла ошибка ввода-вывода
+     * @return список валидных студентов, прочитанных из файла (может быть пустым)
      */
-    public static List<Student> readFromFile(String fileName) throws IOException {
+    public static List<Student> readFromFile(String fileName) {
+        File file = new File("src/main/resources/" + fileName + ".jsonl");
+
+        // Проверка наличия файла
+        if (!file.exists()) {
+            System.err.println("Файл не найден: " + file.getPath());
+            return new ArrayList<>();
+        }
+
+        // Проверка непустоты файла
+        if (file.length() == 0) {
+            System.err.println("Файл пуст: " + file.getPath());
+            return new ArrayList<>();
+        }
+
         List<Student> studentList = new ArrayList<>();
         JsonMapper mapper = JsonMapper.builder().build();
-        File file = new File("src/main/resources/" + fileName + ".jsonl");
 
         try (MappingIterator<Student> iterator = mapper.readerFor(Student.class).readValues(file)) {
             int lineNumber = 0;
@@ -47,7 +64,10 @@ public class StudentsFromFile {
                     System.err.printf("Строка %d: ошибка десериализации JSON - %s%n", lineNumber, e.getMessage());
                 }
             }
-        }
+        } /* catch (IOException e) {
+            // Ошибка ввода-вывода при чтении файла (например, проблемы с доступом)
+            System.err.println("Ошибка чтения файла: " + e.getMessage());
+        } */
 
         return studentList;
     }
