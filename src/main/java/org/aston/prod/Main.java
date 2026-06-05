@@ -1,24 +1,27 @@
 package org.aston.prod;
 
-import org.aston.prod.additionalTasks.WriteInFile;
+import org.aston.prod.input.StudentsFromConsole;
+import org.aston.prod.input.StudentsFromFile;
 import org.aston.prod.model.Student;
- /* import org.aston.prod.model.StudentRandom; ??? */
-import org.aston.prod.input.StudentRandom;
-/* */
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 //        Menu.menu();
 
-        ArrayList<Student> students = new ArrayList<>();
+        List<Student> students;
+        Scanner sc = new Scanner((System.in));
 
-        for (int i = 0; i < 10; i++) {
-            students.add(StudentRandom.newRandomStudent());
-        }
+        students = StudentsFromFile.readFromFile("students1");
+        students.add(Student.builder().name("Gff").age(33).group(3).build());
+        students.add(Student.builder().name("Gff").age(33).group(3).build());
+        students.add(Student.builder().name("Gff").age(33).group(3).build());
 
-        WriteInFile wf = new WriteInFile();
-        wf.writeInFile(students, "students");
+        students.forEach(System.out::println);
+
+        StudentsFromConsole.fromConsole(sc, students);
+
     }
 }

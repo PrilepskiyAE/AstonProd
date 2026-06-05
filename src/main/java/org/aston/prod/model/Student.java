@@ -92,18 +92,6 @@ public class Student implements Comparable<Student> {
             if (name == null)
                 throw new NoCorrectName("Имя не может быть пустым");
             this.name = name.trim();
-
-            /* Evg */
-            if (!name.matches("[a-zA-Zа-яА-Я]"))
-                throw new NoCorrectName("Это все таки имя человека");
-            // фильтрация цифр и пр. неподходящих знаков
-
-            char firstChar = name.charAt(0);
-            if (!Character.isUpperCase(firstChar)) {
-                throw new NoCorrectName("Вот тут обидно было (из-за маленькой буквы)");
-            }
-            /* Evg */
-
             return this;
         }
 
@@ -116,19 +104,6 @@ public class Student implements Comparable<Student> {
 
         public StudentBuilder age(int age) {
             this.age = age;
-            /* Evg */
-            if (age > 140) {   throw new NoCorrectAge("Да Вы бессметрны!");
-            }
-            if (age < 0)   {   throw new NoCorrectAge("Требуется проверка лицензии управления машиной времени");
-            }
-            if (age == 0)  {   throw new NoCorrectAge("Давайте так, роддом пройдете и добро пожаловать!");
-            }
-            Object obj = age;
-            if (!(obj instanceof Integer)) {
-                throw new NoCorrectAge("Требуется ввод целого числа лет");
-            }
-
-
             return this;
         }
 
@@ -141,22 +116,7 @@ public class Student implements Comparable<Student> {
 
         public StudentBuilder group(int group) {
             this.group = group;
-
-
-            /* Evg */
-            if (group > 200) {
-                throw new NoCorrectGroup("Университет не настолько большой");
-            }
-            if (group <= 0) {
-                throw new NoCorrectGroup("Такие обозначения отсутствуют");
-            }
-            Object obj = group;
-            if (!(obj instanceof Integer)) {
-                throw new NoCorrectGroup("Промежуточных, дробных и зашифрованных групп не имеем. Просьба ввести целое число");
-            }
-
             return this;
-
         }
 
         /**
@@ -175,16 +135,12 @@ public class Student implements Comparable<Student> {
                 throw new NoCorrectAge("Возраст студента должен быть от 10 до 100 лет");
             if (group < 1)
                 throw new NoCorrectGroup("Номер группы не может быть отрицательный или равен нулю");
-        //
             if (!(name.matches("^[\\p{L}]+$"))) {
                 throw new NoCorrectName("Имя должно содержать только символы алфавита");
             }
             if (!Character.isUpperCase(name.charAt(0))) {
                 throw new NoCorrectName("Имя должно начинаться с большой буквы");
             }
-        //
-
-
             return new Student(name, age, group);
         }
     }

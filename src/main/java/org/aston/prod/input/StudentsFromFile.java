@@ -1,17 +1,11 @@
-// пятнецо!     05-06-2026
-
-
 package org.aston.prod.input;
 
 import org.aston.prod.model.Student;
+import tools.jackson.core.JacksonException;
 import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.json.JsonMapper;
 
-/* import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.databind.json.JsonMapper; /**/
-
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,13 +30,13 @@ public class StudentsFromFile {
 
         // Проверка наличия файла
         if (!file.exists()) {
-            System.err.println("Файл не найден: " + file.getPath());
+            System.out.println("Файл не найден: " + file.getPath());
             return new ArrayList<>();
         }
 
-        // Проверка непустоты файла
+        // Проверка не пустоты файла
         if (file.length() == 0) {
-            System.err.println("Файл пуст: " + file.getPath());
+            System.out.println("Файл пуст: " + file.getPath());
             return new ArrayList<>();
         }
 
@@ -58,17 +52,14 @@ public class StudentsFromFile {
                     if (isValidStudent(student)) {
                         studentList.add(student);
                     } else {
-                        System.err.printf("Строка %d: студент пропущен (невалидные данные): %s%n", lineNumber, student);
+                        System.out.printf("Строка %d: студент пропущен (невалидные данные): %s%n", lineNumber, student);
                     }
-                } catch (Exception e) {
-                    System.err.printf("Строка %d: ошибка десериализации JSON - %s%n", lineNumber, e.getMessage());
+                } catch (JacksonException e) {
+                    String message = e.getCause().getMessage() != null ? e.getCause().getMessage() : e.getOriginalMessage();
+                    System.out.printf("Строка %d: ошибка десериализации JSON - %s%n", lineNumber, message);
                 }
             }
-        } /* catch (IOException e) {
-            // Ошибка ввода-вывода при чтении файла (например, проблемы с доступом)
-            System.err.println("Ошибка чтения файла: " + e.getMessage());
-        } */
-
+        }
         return studentList;
     }
 
@@ -98,9 +89,6 @@ public class StudentsFromFile {
             return false;
         }
         int group = student.getGroup();
-        if (group <= 0) {
-            return false;
-        }
-        return true;
+        return group > 0;
     }
 }
