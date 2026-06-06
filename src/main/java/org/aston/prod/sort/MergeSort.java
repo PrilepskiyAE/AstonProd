@@ -9,7 +9,7 @@ import java.util.List;
 public class MergeSort implements SortStrategy {
 
     /**
-     * сортировка слиянием
+     * Сортировка слиянием
      * @param students коллекция студентов
      * @param comparator компаратор
      */
@@ -32,7 +32,7 @@ public class MergeSort implements SortStrategy {
     }
 
     /**
-     * сортируем каждую часть списка
+     * Сортируем каждую часть списка
      * @param students список студентов
      * @param comparator компаратор
      * @param left левая часть списка

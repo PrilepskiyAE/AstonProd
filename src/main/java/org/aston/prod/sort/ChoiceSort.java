@@ -8,7 +8,7 @@ import java.util.List;
 public class ChoiceSort implements SortStrategy {
 
     /**
-     * сортировка выбором
+     * Сортировка выбором
      * @param students коллекция студентов
      * @param comparator компаратор
      */

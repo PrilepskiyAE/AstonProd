@@ -10,7 +10,7 @@ public class StrategyActivator {
    private SortStrategy sortStrategy;
 
     /**
-     * начало сортировки
+     * Начало сортировки
      * @param students коллекция студентов
      * @param comparator компаратор
      */
@@ -19,7 +19,7 @@ public class StrategyActivator {
     }
 
     /**
-     * выбор сортировки
+     * Выбор сортировки
      * @param sortStrategy какая сортировка
      */
     public void setSortStrategy(SortStrategy sortStrategy) {

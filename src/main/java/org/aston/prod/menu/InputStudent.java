@@ -13,7 +13,7 @@ public class InputStudent {
     private final static Scanner scanner = new Scanner(System.in);
 
     /**
-     * ввод с клавиатуры
+     * Ввод с клавиатуры
      *
      * @return возвращает коллекцию студентов
      */
@@ -34,7 +34,7 @@ public class InputStudent {
     }
 
     /**
-     * рандомное заполнение студентов
+     * Рандомное заполнение студентов
      *
      * @return возвращает коллекцию студентов
      */
@@ -48,7 +48,7 @@ public class InputStudent {
     }
 
     /**
-     * заполнение студентов из файла
+     * Заполнение студентов из файла
      *
      * @return возвращает коллекцию студентов
      */

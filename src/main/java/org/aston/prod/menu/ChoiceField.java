@@ -12,7 +12,7 @@ public class ChoiceField {
     private final static Scanner scanner = new Scanner(System.in);
 
     /**
-     * сортируем по имени
+     * Сортируем по имени
      *
      * @param students коллекция студентов
      */
@@ -20,7 +20,8 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла, 6 - слиянием""");
+                4 - челночную, 5 - Шелла, 6 - слиянием,
+                7 - быстрая""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по имени ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getName));
@@ -28,7 +29,7 @@ public class ChoiceField {
     }
 
     /**
-     * сортируем по возрасту
+     * Сортируем по возрасту
      *
      * @param students коллекция студентов
      */
@@ -36,7 +37,8 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла, 6 - слиянием""");
+                4 - челночную, 5 - Шелла, 6 - слиянием,
+                7 - быстрая""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по возрасту ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getAge));
@@ -44,7 +46,7 @@ public class ChoiceField {
     }
 
     /**
-     * сортируем по группе
+     * Сортируем по группе
      *
      * @param students коллекция студентов
      */
@@ -52,7 +54,8 @@ public class ChoiceField {
         System.out.println("""
                 Какую сортировку предпочитаете?
                 1- пузырьками, 2- выбором, 3 - вставками,
-                4 - челночную, 5 - Шелла, 6 - слиянием""");
+                4 - челночную, 5 - Шелла, 6 - слиянием,
+                7 - быстрая""");
         String inputSort = scanner.nextLine();
         System.out.print("Сортируем по группе ");
         SelectionSort.sort(inputSort).startSort(students, Comparator.comparing(Student::getGroup));
@@ -63,7 +66,7 @@ public class ChoiceField {
 class SelectionSort {
 
     /**
-     * выбор сортировки
+     * Выбор сортировки
      *
      * @param numberSort ноиер сортировки
      * @return возвращаем выбранную сортировку
@@ -94,6 +97,10 @@ class SelectionSort {
             case "6" -> {
                 System.out.println("слиянием:");
                 activator.setSortStrategy(new MergeSort());
+            }
+            case "7" -> {
+                System.out.println("быстрой сортировкой:");
+                activator.setSortStrategy(new QuickSort());
             }
         }
         return activator;

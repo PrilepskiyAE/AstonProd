@@ -8,7 +8,7 @@ import java.util.List;
 public class BubblesSort implements SortStrategy {
 
     /**
-     * сортировка пузырьками
+     * Сортировка пузырьками
      * @param students коллекция студентов
      * @param comparator компаратор
      */

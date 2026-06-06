@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class Menu {
 
+    /**
+     * Ввод студентов через консоль, рандомно и из файла
+     */
     public static void menu() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
