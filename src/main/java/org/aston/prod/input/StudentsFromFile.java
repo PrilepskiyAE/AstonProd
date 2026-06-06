@@ -6,7 +6,6 @@ import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.json.JsonMapper;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,24 +22,22 @@ public class StudentsFromFile {
      * Если файл не найден или пуст, выводится сообщение об ошибке и возвращается пустой список.
      *
      * @param fileName имя файла без расширения (расширение .jsonl добавится автоматически)
-     * @return список валидных студентов, прочитанных из файла (может быть пустым)
      */
-    public static List<Student> readFromFile(String fileName) {
+    public static void readFromFile(String fileName, List<Student> studentList) {
         File file = new File("src/main/resources/" + fileName + ".jsonl");
 
         // Проверка наличия файла
         if (!file.exists()) {
             System.out.println("Файл не найден: " + file.getPath());
-            return new ArrayList<>();
+            return;
         }
 
         // Проверка не пустоты файла
         if (file.length() == 0) {
             System.out.println("Файл пуст: " + file.getPath());
-            return new ArrayList<>();
+            return;
         }
 
-        List<Student> studentList = new ArrayList<>();
         JsonMapper mapper = JsonMapper.builder().build();
 
         try (MappingIterator<Student> iterator = mapper.readerFor(Student.class).readValues(file)) {
@@ -60,7 +57,6 @@ public class StudentsFromFile {
                 }
             }
         }
-        return studentList;
     }
 
     /**
