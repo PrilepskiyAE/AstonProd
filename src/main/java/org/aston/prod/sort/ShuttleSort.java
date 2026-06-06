@@ -14,7 +14,7 @@ public class ShuttleSort implements SortStrategy {
      */
     public void sort(List<Student> students, Comparator<Student> comparator) {
         int size = students.size();
-        for (int i = 1; i < size - 1; i++) {
+        for (int i = 1; i < size; i++) {
             if(comparator.compare(students.get(i - 1), students.get(i)) > 0) {
                 Swap.swap(students, i - 1, i);
             }
