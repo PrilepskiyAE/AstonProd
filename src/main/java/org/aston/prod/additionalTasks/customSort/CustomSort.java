@@ -19,7 +19,7 @@ import java.util.List;
  * </ul>
  */
 public class CustomSort {
-    private StrategyActivator strategyActivator;
+    private final StrategyActivator strategyActivator;
     private CustomSortStrategy customSortStrategy;
     /**
      * Создаёт экземпляр {@code CustomSort} с активатором стратегии и устанавливает стратегию сортировки по возрасту по умолчанию.
@@ -78,6 +78,6 @@ public class CustomSort {
         long time = System.nanoTime();
         customSortStrategy.sort(studentList, strategyActivator);
         time = (System.nanoTime() - time) / 1_000_000;
-        System.out.println("Сортировка заняла " + time + " миллисекунд");
+        System.out.println("Сортировка заняла " + time + " мс");
     }
 }
