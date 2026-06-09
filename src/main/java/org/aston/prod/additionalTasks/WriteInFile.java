@@ -39,7 +39,8 @@ public class WriteInFile {
         JsonMapper mapper = new JsonMapper();
         Path path = Path.of("src/main/resources/" + fileName + ".jsonl");
 
-        try (OutputStream outputStream = Files.newOutputStream(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+        try (OutputStream outputStream = Files.newOutputStream(path, StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND)) {
             if (Files.exists(path) && Files.size(path) > 0)
                 outputStream.write(System.lineSeparator().getBytes());
             SequenceWriter sequenceWriter = mapper.writer().withRootValueSeparator("\n").writeValues(outputStream);

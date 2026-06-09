@@ -7,7 +7,7 @@ import java.util.List;
 public class InsertSort implements SortStrategy {
 
     /**
-     * сортировка вставками
+     * Сортировка вставками
      * @param students коллекция студентов
      * @param comparator компаратор
      */

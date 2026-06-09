@@ -8,7 +8,7 @@ import java.util.List;
 public class ShuttleSort implements SortStrategy {
 
     /**
-     * челночная сортировка
+     * Челночная сортировка
      * @param students коллекция студентов
      * @param comparator компаратор
      */

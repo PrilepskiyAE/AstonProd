@@ -8,7 +8,7 @@ import java.util.List;
 public class ShellSort implements SortStrategy {
 
     /**
-     * сортировка Шелла
+     * Сортировка Шелла
      * @param students коллекция студентов
      * @param comparator компаратор
      */
