@@ -3,6 +3,7 @@ package org.aston.prod;
 import org.aston.prod.additionalTasks.task3.CustomCollection;
 import org.aston.prod.input.StudentsFromConsole;
 import org.aston.prod.input.StudentsFromFile;
+import org.aston.prod.menu.Menu;
 import org.aston.prod.model.Student;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import static org.aston.prod.additionalTasks.task3.CustomCollection.customCollec
 
 public class Main {
     public static void main(String[] args) {
-//        Menu.menu();
+        Menu.menu();
 
         /*List<Student> students = new ArrayList<>();
         Scanner sc = new Scanner((System.in));
@@ -29,11 +30,11 @@ public class Main {
 
         StudentsFromConsole.fromConsole(sc, students);*/
 
-        CustomCollection<Student> students = Stream.of(Student.builder().name("Dghhgh").age(54).group(34).build(),
+        /*CustomCollection<Student> students = Stream.of(Student.builder().name("Dghhgh").age(54).group(34).build(),
                         Student.builder().name("Gdssds").age(56).group(34).build()).
                 collect(customCollector());
-        //students.forEach(System.out::println);
-        //students.remove(Student.builder().name("Gdssds").age(56).group(34).build());
-        System.out.println(students);
+        students.forEach(System.out::println);
+        students.remove(Student.builder().name("Gdssds").age(56).group(34).build());
+        System.out.println(students);*/
     }
 }
