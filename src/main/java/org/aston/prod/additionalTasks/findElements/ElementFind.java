@@ -112,7 +112,7 @@ public class ElementFind {
             System.out.println("Введите значение которое будем искать:");
             String value = sc.nextLine();
             if (field == 1) {
-                if (!validation.checkName(value.trim()))
+                if (!validation.checkName(value))
                     continue;
             }
             if (field == 2) {
@@ -137,10 +137,9 @@ public class ElementFind {
                     continue;
                 }
             }
-            return value;
+            return value.trim();
         }
     }
-
 
     private int field(Scanner scanner) {
         while (true) {
