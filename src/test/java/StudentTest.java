@@ -194,7 +194,7 @@ class StudentTest {
     @Test
     void testToString() {
         Student student = Student.builder().name("Ivan").age(21).group(7).build();
-        String expected = "Student{name='Ivan', age=21, group=7}";
+        String expected = "Ivan        | 21 лет | группа 7";
         assertEquals(expected, student.toString());
     }
 

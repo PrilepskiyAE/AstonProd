@@ -183,11 +183,8 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", group=" + group +
-                '}';
+        return String.format("%-11s | %2d лет | группа %d",
+                name, age, group);
     }
     /**
      * Сравнивает данный объект с другим на равенство.
