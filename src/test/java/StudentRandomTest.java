@@ -10,7 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentRandomTest {
 
     /**
-     * Проверяет, что метод {@link StudentRandom#newRandomStudent()} создаёт валидного студента.
+     * Проверяет работу приватного метода {@code newRandomStudent()} через рефлексию.
+     * <p>
+     * С помощью рефлексии вызывается приватный метод {@code newRandomStudent()},
+     * и проверяет что метод создаёт валидного студента.
      * <p>
      * Генерируется один случайный студент. Тест верифицирует:
      * <ul>
@@ -22,8 +25,11 @@ class StudentRandomTest {
      */
 
     @Test
-    void testNewRandomStudent_CreatesValidStudent() {
-        Student student = StudentRandom.newRandomStudent();
+    void testNewRandomStudent_CreatesValidStudent() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
+
+        Student student =(Student) method.invoke(null);
 
         assertNotNull(student.getName());
         assertTrue(student.getName().length() >= 3 && student.getName().length() <= 11);
@@ -40,17 +46,20 @@ class StudentRandomTest {
     }
 
     /**
-     * Проверяет, что многократный вызов {@link StudentRandom#newRandomStudent()} генерирует разные объекты.
+     * Проверяет, что многократный вызов приватного метода {@code newRandomStudent()} генерирует разные объекты.
      * <p>
      * Создаётся массив из 10 случайных студентов. Тест убеждается, что не все объекты равны между собой
      * (т. е. генератор действительно выдаёт вариативные данные).
      */
 
     @Test
-    void testMultipleRandomStudents_AreDifferent() {
+    void testMultipleRandomStudents_AreDifferent() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
+
         Student[] students = new Student[10];
         for (int i = 0; i < students.length; i++) {
-            students[i] = StudentRandom.newRandomStudent();
+            students[i] = (Student) method.invoke(null);
         }
 
         boolean allSame = true;
@@ -71,9 +80,11 @@ class StudentRandomTest {
      */
 
     @Test
-    void testNameFormat_FirstLetterCapitalized() {
+    void testNameFormat_FirstLetterCapitalized() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
         for (int i = 0; i < 100; i++) {
-            Student student = StudentRandom.newRandomStudent();
+            Student student = (Student) method.invoke(null);
             char firstChar = student.getName().charAt(0);
             assertTrue(Character.isUpperCase(firstChar));
         }
@@ -87,9 +98,11 @@ class StudentRandomTest {
      */
 
     @Test
-    void testNameFormat_OtherLettersLowercase() {
+    void testNameFormat_OtherLettersLowercase() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
         for (int i = 0; i < 100; i++) {
-            Student student = StudentRandom.newRandomStudent();
+            Student student = (Student) method.invoke(null);
             String name = student.getName();
             for (int j = 1; j < name.length(); j++) {
                 assertTrue(Character.isLowerCase(name.charAt(j)));
@@ -105,9 +118,11 @@ class StudentRandomTest {
      */
 
     @Test
-    void testAgeRange() {
+    void testAgeRange() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
         for (int i = 0; i < 100; i++) {
-            Student student = StudentRandom.newRandomStudent();
+            Student student = (Student) method.invoke(null);
             int age = student.getAge();
             assertTrue(age >= 18 && age <= 60);
         }
@@ -121,9 +136,11 @@ class StudentRandomTest {
      */
 
     @Test
-    void testGroupRange() {
+    void testGroupRange() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
+        method.setAccessible(true); // Разрешаем доступ к приватному методу
         for (int i = 0; i < 100; i++) {
-            Student student = StudentRandom.newRandomStudent();
+            Student student = (Student) method.invoke(null);
             int group = student.getGroup();
             assertTrue(group >= 1 && group <= 9);
         }
