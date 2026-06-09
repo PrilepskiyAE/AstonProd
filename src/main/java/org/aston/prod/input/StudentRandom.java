@@ -29,7 +29,7 @@ public abstract class StudentRandom {
      * @return новый объект {@link Student} с рандомными полями
      */
 
-    public static Student newRandomStudent() {
+    private static Student newRandomStudent() {
         return Student.builder()
                 .name(getRandomString())
                 .age(random.nextInt(18, 61))
