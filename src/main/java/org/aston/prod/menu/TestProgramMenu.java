@@ -51,7 +51,7 @@ public class TestProgramMenu {
                     case "4" -> strategy();
                     case "5" -> {
                         if (studentList.size() < 2)
-                            System.out.println("Для сортировки добавьте в список еще несколько студентов");
+                            System.out.println("Для сортировки в списке должно быть хоть 2 студента");
                         else {
                             strategyActivator.startSort(studentList, comparator);
                             System.out.println("Теперь список отсортирован");
@@ -88,6 +88,10 @@ public class TestProgramMenu {
     private static void additional() {
 
         while (true) {
+            if (studentList.isEmpty()) {
+                System.out.println("Сперва добавьте студентов в список");
+                break;
+            }
             System.out.println("""
                     Что будем делать
                     1 - сортировать коллекцию только по четным значениям
@@ -118,6 +122,10 @@ public class TestProgramMenu {
 
     private static void customSort() {
         while (true) {
+            if (studentList.size() == 1) {
+                System.out.println("Список из 1го элемента всегда отсортированный");
+                break;
+            }
             System.out.println("""
                     Все нечетные значения будут оставаться на месте, а четные меняться местами
                     По какому критерию будем сортировать список?
@@ -137,7 +145,6 @@ public class TestProgramMenu {
             }
             System.out.println("Начинаю сортировку списка");
             customSort.sort(studentList);
-            System.out.println("Список отсортирован");
             break;
         }
     }
@@ -193,10 +200,14 @@ public class TestProgramMenu {
                         System.out.println("Сколько случайных студентов создать?");
                         String value = scanner.nextLine();
                         if (!value.matches("\\d+")) {
-                            System.out.println("Количество студентов должно быть числом");
+                            System.out.println("Количество студентов должно быть положительным числом");
                             continue;
                         }
                         int quantity = Integer.parseInt(value);
+                        if (quantity < 1) {
+                            System.out.println("Количество студентов должно быть положительным числом больше нуля");
+                            continue;
+                        }
                         StudentRandom.addRandomStudentsInList(studentList, quantity);
                         break;
                     }
