@@ -18,8 +18,8 @@ public abstract class StudentComparators {
      * @return {@link Comparator} для сортировки по выбору пользователя
      */
     public static Comparator<Student> customComparator(Scanner scanner) {
+        List<String> queue = queueCompare(scanner);
         return ((o1, o2) -> {
-            List<String> queue = queueCompare(scanner);
             int result = 0;
             for (String s : queue) {
                 int multiplication = 1;
