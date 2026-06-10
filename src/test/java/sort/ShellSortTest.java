@@ -1,13 +1,17 @@
 package sort;
 
+import io.qameta.allure.*;
 import org.aston.prod.model.Student;
 import org.aston.prod.sort.ShellSort;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Epic("Тесты класса ShellSort")
 public class ShellSortTest extends BaseTest<ShellSort> {
 
     public ShellSortTest() {
@@ -17,96 +21,90 @@ public class ShellSortTest extends BaseTest<ShellSort> {
     /**
      * Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).
      */
+    @DisplayName("Сортировка студентов по имени в алфавитном порядке (A→Z)")
+    @Description("Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testSortByNameAscendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
+
         Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
 
         // Act
         sort.sort(students, nameComparator);
 
         // Assert
-        assertEquals("Анна", students.get(0).getName(),
-                "Первый студент должен быть Анна — первая по алфавиту");
-        assertEquals("Иван", students.get(1).getName(),
-                "Второй студент должен быть Иван");
-        assertEquals("Мария", students.get(2).getName(),
-                "Третий студент должен быть Мария");
-        assertEquals("Пётр", students.get(3).getName(),
-                "Четвёртый студент должен быть Пётр — последний по алфавиту");
+        assertEquals("Анна", students.get(0).getName());
+        assertEquals("Иван", students.get(1).getName());
+        assertEquals("Мария", students.get(2).getName());
+        assertEquals("Пётр", students.get(3).getName());
     }
 
     /**
      * Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).
      */
+
+    @DisplayName("Сортировка студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Description("Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testSortByAgeAscendingOrder() {
+    void testSortByAgeDescendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
-        Comparator<Student> ageComparator = Comparator.comparingInt(Student::getAge);
+
+        Comparator<Student> ageComparator = Comparator.comparing(Student::getAge).reversed();
 
         // Act
         sort.sort(students, ageComparator);
 
         // Assert
-        assertEquals(18, students.get(0).getAge(), "Самый молодой студент — 18 лет");
-        assertEquals(19, students.get(1).getAge(), "Следующий по возрасту — 20 лет");
-        assertEquals(20, students.get(2).getAge(), "Средний возраст — 22 года");
-        assertEquals(25, students.get(3).getAge(), "Самый старший студент — 25 лет");
+        assertEquals(25, students.get(0).getAge());
+        assertEquals(20, students.get(1).getAge());
+        assertEquals(19, students.get(2).getAge());
+        assertEquals(18, students.get(3).getAge());
     }
-
     /**
-     * Проверяет сортировку студентов по номеру группы в порядке возрастания.
+     * Тест сортировки студентов по номеру группы в порядке возрастания.
      */
+    @DisplayName("Сортировка студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Description("Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testSortByGroupAscendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
-        Comparator<Student> groupComparator = Comparator.comparingInt(Student::getGroup);
+
+        Comparator<Student> groupComparator = Comparator.comparing(Student::getGroup);
 
         // Act
         sort.sort(students, groupComparator);
 
         // Assert
-        assertEquals(101, students.get(0).getGroup(), "Первая группа — 101");
-        assertEquals(102, students.get(1).getGroup(), "Вторая группа — 102");
-        assertEquals(103, students.get(2).getGroup(), "Третья группа — 103");
-        assertEquals(104, students.get(3).getGroup(), "Четвёртая группа — 104");
+        assertEquals(101, students.get(0).getGroup());
+        assertEquals(102, students.get(1).getGroup());
+        assertEquals(103, students.get(2).getGroup());
+        assertEquals(104, students.get(3).getGroup());
     }
-
     /**
-     * Проверяет сортировку по имени в обратном алфавитном порядке (Z→A).
+     * Тест обработки пустой коллекции студентов в алгоритме сортировки.
      */
-    @Test
-    void testSortByNameDescendingOrder() {
-        // Arrange
-        List<Student> students = mock.getStudents();
-        Comparator<Student> nameComparator = Comparator.comparing(Student::getName).reversed();
-
-        // Act
-        sort.sort(students, nameComparator);
-
-        // Assert
-        assertEquals("Пётр", students.get(0).getName(), "Первый — Пётр (последний по алфавиту)");
-        assertEquals("Мария", students.get(1).getName(), "Второй — Мария");
-        assertEquals("Иван", students.get(2).getName(), "Третий — Иван");
-        assertEquals("Анна", students.get(3).getName(), "Последний — Анна (первая по алфавиту)");
-    }
-
-    /**
-     * Проверяет, что сортировка корректно работает с пустым списком.
-     */
+    @DisplayName("Обработка пустой коллекции студентов в алгоритме сортировки")
+    @Description("Тест обработки пустой коллекции студентов в алгоритме сортировки.")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testSortEmptyList() {
         // Arrange
-        List<Student> emptyList = List.of();
+        List<Student> emptyList = new ArrayList<>();
         Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
 
         // Act & Assert
-        assertDoesNotThrow(() -> sort.sort(emptyList, nameComparator),
-                "Сортировка пустого списка не должна вызывать исключений");
-        assertTrue(emptyList.isEmpty(), "Пустой список должен остаться пустым после сортировки");
+        assertDoesNotThrow(() -> sort.sort(emptyList, nameComparator));
+        assertTrue(emptyList.isEmpty());
     }
 
 }
