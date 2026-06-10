@@ -6,7 +6,6 @@ import org.aston.prod.additionalTasks.customSort.SortByAge;
 import org.aston.prod.additionalTasks.customSort.SortByGroup;
 import org.aston.prod.additionalTasks.customSort.SortByLongName;
 import org.aston.prod.additionalTasks.findElements.ElementFind;
-import org.aston.prod.additionalTasks.task3.InputCustom;
 import org.aston.prod.input.StudentRandom;
 import org.aston.prod.input.StudentsFromConsole;
 import org.aston.prod.input.StudentsFromFile;
@@ -41,7 +40,6 @@ public class TestProgramMenu {
                          5 - сортировка списка
                          6 - дополнительный функционал
                          7 - вывод текущего списка в консоль
-                         8 - Заполнение кастомной коллекции с помощью стримов
                          9 - выход из программы
                         """);
                 String choice = scanner.nextLine();
@@ -69,7 +67,6 @@ public class TestProgramMenu {
                             studentList.forEach(System.out::println);
                         }
                     }
-                    case "8" -> InputCustom.consoleCustom(scanner);
                     case "9" -> {
                         System.out.println("Спасибо за использование, выполнение программы прекращается");
                         break mainWhile;
