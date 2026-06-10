@@ -1,13 +1,11 @@
 package org.aston.prod.additionalTasks.task3;
 
-import org.aston.prod.input.StudentRandom;
+
 import org.aston.prod.model.Student;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import static org.aston.prod.additionalTasks.task3.CustomList.customCollector;
 

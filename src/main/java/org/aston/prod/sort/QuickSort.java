@@ -13,6 +13,9 @@ public class QuickSort implements SortStrategy {
      * @param comparator компаратор
      */
     public void sort(List<Student> students, Comparator<Student> comparator) {
+        if (students.size() < 2) {
+            return;
+        }
         quick(students, comparator, 0, students.size() - 1);
     }
 
