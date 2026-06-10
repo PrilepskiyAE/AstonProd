@@ -1,6 +1,8 @@
 package org.aston.prod.additionalTasks.task3;
 
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collector;
 
@@ -173,6 +175,12 @@ public class CustomList<S> implements List<S> {
     @Override
     public List<S> subList(int fromIndex, int toIndex) {
         return internalList.subList(fromIndex, toIndex);
+    }
+
+    public void forEach(Consumer<? super S> consumer) {
+        for (int i = 0; i < size; i++) {
+            consumer.accept((S)  elements[i]);
+        }
     }
 
     @Override
