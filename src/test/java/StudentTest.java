@@ -1,12 +1,14 @@
 
+import io.qameta.allure.*;
 import org.aston.prod.model.Student;
 import org.aston.prod.model.exception.NoCorrectAge;
 import org.aston.prod.model.exception.NoCorrectGroup;
 import org.aston.prod.model.exception.NoCorrectName;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Epic("Тесты класса Student")
 class StudentTest {
 
     /**
@@ -16,7 +18,10 @@ class StudentTest {
      * имя "Anna", возраст 20 лет, группа 5. Затем проверяет, что все поля объекта
      * соответствуют заданным значениям.
      */
-
+    @DisplayName("Создание студента с корректными данными")
+    @Description(" Проверяет создание студента с корректными данными")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testStudentCreationWithValidData() {
         Student student = Student.builder()
@@ -38,9 +43,12 @@ class StudentTest {
      * {@code null} в качестве имени студента. Ожидается, что будет выброшено исключение
      * {@link NoCorrectName}, поскольку имя не может быть пустым.
      */
-
+    @DisplayName("Валидация имени при передаче null")
+    @Description(" Проверяет валидацию имени при передаче null")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testNameValidation_NullName() {
+    void testNameValidationNullName() {
         assertThrows(NoCorrectName.class, () ->
                 Student.builder().name(null).age(20).group(5).build());
     }
@@ -54,9 +62,12 @@ class StudentTest {
      * {@link NoCorrectName}, поскольку по бизнес‑правилам имя должно содержать
      * от 3 до 11 символов.
      */
-
+    @DisplayName("Валидация имени при передаче слишком короткой строки")
+    @Description("Проверяет валидацию имени при передаче слишком короткой строки.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testNameValidation_ShortName() {
+    void testNameValidationShortName() {
         assertThrows(NoCorrectName.class, () ->
                 Student.builder().name("An").age(20).group(5).build());
     }
@@ -71,9 +82,12 @@ class StudentTest {
      * {@link NoCorrectName}, поскольку по бизнес‑правилам имя должно содержать
      * от 3 до 11 символов.
      */
-
+    @DisplayName("Валидация имени при передаче слишком длинной строки")
+    @Description("Проверяет валидацию имени при передаче слишком длинной строки")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testNameValidation_LongName() {
+    void testNameValidationLongName() {
         String longName = "ThisIsTooLongNameForStudent";
         assertThrows(NoCorrectName.class, () ->
                 Student.builder().name(longName).age(20).group(5).build());
@@ -88,7 +102,10 @@ class StudentTest {
      * {@link Student} поле name будет содержать строку "Bob" — без лишних пробелов,
      * так как билдер применяет метод {@code trim()} при установке имени.
      */
-
+    @DisplayName("Имя студента корректно очищается от лишних пробелов")
+    @Description("Проверяет, что имя студента корректно очищается от лишних пробелов")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testNameTrimming() {
         Student student = Student.builder()
@@ -108,7 +125,10 @@ class StudentTest {
      * {@link NoCorrectAge}, поскольку по бизнес‑правилам возраст студента должен быть
      * в диапазоне от 10 до 100 лет включительно.
      */
-
+    @DisplayName("Валидация возраста при передаче значения ниже допустимого минимума")
+    @Description("Проверяет валидацию возраста при передаче значения ниже допустимого минимума.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testAgeValidation_TooYoung() {
         assertThrows(NoCorrectAge.class, () ->
@@ -122,9 +142,12 @@ class StudentTest {
      * это меньше минимально разрешённого возраста (10 лет). Ожидается исключение
      * {@link NoCorrectAge}, что подтверждает корректность валидации возраста.
      */
-
+    @DisplayName("Валидация ниже допустимого минимума выбрасывается исключение")
+    @Description("Проверяет, что при возрасте ниже допустимого минимума выбрасывается исключение.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testAgeValidation_TooOld() {
+    void testAgeValidationTooOld() {
         assertThrows(NoCorrectAge.class, () ->
                 Student.builder().name("David").age(101).group(1).build());
     }
@@ -138,9 +161,12 @@ class StudentTest {
      * {@link NoCorrectGroup}, поскольку по правилам валидации номер группы
      * должен быть положительным числом (минимум 1).
      */
-
+    @DisplayName("Валидация номера группы при передаче нулевого значения")
+    @Description("Проверяет валидацию номера группы при передаче нулевого значения.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testGroupValidation_ZeroGroup() {
+    void testGroupValidationZeroGroup() {
         assertThrows(NoCorrectGroup.class, () ->
                 Student.builder().name("Eve").age(30).group(0).build());
     }
@@ -154,8 +180,12 @@ class StudentTest {
      * должен быть положительным числом (минимум 1).
      */
 
+    @DisplayName("Валидация номера группы при передаче отрицательного значения.")
+    @Description("Проверяет валидацию номера группы при передаче отрицательного значения.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testGroupValidation_NegativeGroup() {
+    void testGroupValidationNegativeGroup() {
         assertThrows(NoCorrectGroup.class, () ->
                 Student.builder().name("Frank").age(22).group(-5).build());
     }
@@ -169,6 +199,10 @@ class StudentTest {
      * Тест подтверждает согласованность контрактов equals и hashCode.
      */
 
+    @DisplayName("корректность реализации методов Student#equals(Object) и Student#hashCode().")
+    @Description("Проверяет корректность реализации методов {@link Student#equals(Object)} и {@link Student#hashCode()}..")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testEqualsAndHashCode() {
         Student student1 = Student.builder().name("Grace").age(19).group(4).build();
@@ -190,7 +224,10 @@ class StudentTest {
      * включая регистр букв и пунктуацию. Тест подтверждает, что строковое представление объекта
      * соответствует ожидаемому шаблону.
      */
-
+    @DisplayName("Корректность реализации метода Student#toString()")
+    @Description("Проверяет корректность реализации метода Student#toString().")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testToString() {
         Student student = Student.builder().name("Ivan").age(21).group(7).build();
@@ -207,9 +244,12 @@ class StudentTest {
      * а {@code studentB.compareTo(studentA)} — положительное. Тест подтверждает корректность
      * сортировки по имени в рамках контракта интерфейса {@link Comparable}.
      */
-
+    @DisplayName("Корректность реализации сравнение студентов по имени через метод Student#compareTo(Student)")
+    @Description("Проверяет сравнение студентов по имени через метод Student#compareTo(Student)")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testCompareTo_ByName() {
+    void testCompareToByName() {
         Student studentA = Student.builder().name("Anna").age(20).group(1).build();
         Student studentB = Student.builder().name("Boris").age(20).group(1).build();
 
@@ -226,9 +266,12 @@ class StudentTest {
      * Тест подтверждает: {@code studentA.compareTo(studentB)} возвращает отрицательное значение,
      * а {@code studentB.compareTo(studentA)} — положительное, что соответствует правилам сортировки.
      */
-
+    @DisplayName("Корректность сортировки студентов по возрасту")
+    @Description("Проверяет, что метод Student#compareTo(Student) корректно сортирует студентов по возрасту.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testCompareTo_ByAge() {
+    void testCompareToByAge() {
         Student studentA = Student.builder().name("Same").age(18).group(1).build();
         Student studentB = Student.builder().name("Same").age(25).group(1).build();
 
@@ -246,9 +289,12 @@ class StudentTest {
      * а {@code studentB.compareTo(studentA)} — положительное. Тест подтверждает корректность
      * этого поведения.
      */
-
+    @DisplayName("Корректность сортировки студентов по номеру группы при совпадении имени и возраста")
+    @Description("Проверяет сравнение студентов по номеру группы при совпадении имени и возраста.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testCompareTo_ByGroup() {
+    void testCompareToByGroup() {
         Student studentA = Student.builder().name("Same").age(20).group(2).build();
         Student studentB = Student.builder().name("Same").age(20).group(5).build();
 
@@ -266,8 +312,12 @@ class StudentTest {
      * Тест подтверждает корректность реализации контракта Comparable для случая идентичных экземпляров.
      */
 
+    @DisplayName("Корректность что метод Student#compareTo(Student) возвращает 0 для полностью идентичных объектов.")
+    @Description("Проверяет, что метод Student#compareTo(Student) возвращает 0 для полностью идентичных объектов.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testCompareTo_EqualObjects() {
+    void testCompareToEqualObjects() {
         Student studentA = Student.builder().name("Identical").age(30).group(3).build();
         Student studentB = Student.builder().name("Identical").age(30).group(3).build();
 
@@ -283,7 +333,10 @@ class StudentTest {
      * (минимальный допустимый номер). Тест подтверждает, что билдер корректно обрабатывает
      * граничные значения и все поля инициализируются ожидаемыми данными.
      */
-
+    @DisplayName("Корректность создания студента с минимально допустимыми валидными значениями полей")
+    @Description("Проверяет создание студента с минимально допустимыми валидными значениями полей.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testBuildWithMinimumValidValues() {
         Student student = Student.builder()
@@ -306,7 +359,10 @@ class StudentTest {
      * и группа 999 (максимально допустимый номер). Тест подтверждает, что билдер корректно
      * обрабатывает граничные значения и все поля инициализируются ожидаемыми данными.
      */
-
+    @DisplayName("Корректность создание студента с максимально допустимыми валидными значениями полей.")
+    @Description("Проверяет создание студента с максимально допустимыми валидными значениями полей.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testBuildWithMaximumValidValues() {
         Student student = Student.builder()

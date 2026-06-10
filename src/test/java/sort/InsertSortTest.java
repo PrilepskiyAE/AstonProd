@@ -2,8 +2,8 @@ package sort;
 
 import io.qameta.allure.*;
 import org.aston.prod.model.Student;
-import org.aston.prod.sort.BubblesSort;
 import org.aston.prod.sort.ChoiceSort;
+import org.aston.prod.sort.InsertSort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +12,13 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-@Epic("Тесты класса ChoiceSort")
-public class ChoiceSortTest extends BaseTest<ChoiceSort> {
-    public ChoiceSortTest() {
-        super(ChoiceSort.class);
+@Epic("Тесты класса InsertSort")
+public class InsertSortTest extends BaseTest<InsertSort>{
+
+    public InsertSortTest() {
+        super(InsertSort.class);
     }
+
     /**
      * Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).
      */
@@ -105,5 +107,6 @@ public class ChoiceSortTest extends BaseTest<ChoiceSort> {
         assertDoesNotThrow(() -> sort.sort(emptyList, nameComparator));
         assertTrue(emptyList.isEmpty());
     }
+
 
 }

@@ -2,8 +2,7 @@ package sort;
 
 import io.qameta.allure.*;
 import org.aston.prod.model.Student;
-import org.aston.prod.sort.BubblesSort;
-import org.aston.prod.sort.ChoiceSort;
+import org.aston.prod.sort.QuickSort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +11,12 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-@Epic("Тесты класса ChoiceSort")
-public class ChoiceSortTest extends BaseTest<ChoiceSort> {
-    public ChoiceSortTest() {
-        super(ChoiceSort.class);
-    }
+@Epic("Тесты класса QuickSort")
+public class QuickSortTest extends BaseTest<QuickSort> {
+   public QuickSortTest() {
+       super(QuickSort.class);
+   }
+
     /**
      * Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).
      */
@@ -93,7 +93,7 @@ public class ChoiceSortTest extends BaseTest<ChoiceSort> {
      */
     @DisplayName("Обработка пустой коллекции студентов в алгоритме сортировки")
     @Description("Тест обработки пустой коллекции студентов в алгоритме сортировки.")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testSortEmptyList() {

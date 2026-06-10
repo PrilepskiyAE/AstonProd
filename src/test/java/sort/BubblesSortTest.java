@@ -1,39 +1,36 @@
 package sort;
 
+import io.qameta.allure.*;
 import org.aston.prod.model.Student;
 import org.aston.prod.sort.BubblesSort;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-
-class BubblesSortTest {
-
-    private final BubblesSort bubblesSort = new BubblesSort();
-
-    StudentMockData mock = new StudentMockData();
+@Epic("Тесты класса BubblesSort")
+class BubblesSortTest extends BaseTest<BubblesSort> {
+    public BubblesSortTest() {
+        super(BubblesSort.class);
+    }
 
     /**
-     * Тест сортировки студентов по имени в алфавитном порядке (по возрастанию) с использованием.
-     * <p>
-     * Проверяет, что после сортировки список студентов упорядочен по полю {@link Student#getName()}
-     * в лексикографическом порядке. Для сравнения применяется
-     * <p>
-     * Ожидаемый результат: имена в отсортированном списке должны следовать в порядке — «Анна», «Иван»,
-     * «Мария», «Пётр».
-     *
+     * Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).
      */
-
+    @DisplayName("Сортировка студентов по имени в алфавитном порядке (A→Z)")
+    @Description("Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testSortByName_AscendingOrder() {
+    void testSortByNameAscendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
 
         Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
 
         // Act
-        bubblesSort.sort(students, nameComparator);
+        sort.sort(students, nameComparator);
 
         // Assert
         assertEquals("Анна", students.get(0).getName());
@@ -43,27 +40,22 @@ class BubblesSortTest {
     }
 
     /**
-     * Тест сортировки студентов по возрасту в порядке убывания (от старшего к младшему)
-     * с использованием {@link BubblesSort}.
-     * <p>
-     * Проверяет, что после сортировки список студентов упорядочен по полю {@link Student#getAge()}
-     * в обратном порядке (по убыванию). Для этого используется компаратор
-     *  созданный на основе {@link Student#getAge()},
-     * с применением метода {@link Comparator#reversed()} для инвертирования порядка сортировки.
-     * <p>
-     * Ожидаемый результат: возрасты в отсортированном списке должны следовать в порядке — 25, 20, 19, 18.
-     *
+     * Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).
      */
 
+    @DisplayName("Сортировка студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Description("Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testSortByAge_DescendingOrder() {
+    void testSortByAgeDescendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
 
         Comparator<Student> ageComparator = Comparator.comparing(Student::getAge).reversed();
 
         // Act
-        bubblesSort.sort(students, ageComparator);
+        sort.sort(students, ageComparator);
 
         // Assert
         assertEquals(25, students.get(0).getAge());
@@ -72,25 +64,21 @@ class BubblesSortTest {
         assertEquals(18, students.get(3).getAge());
     }
     /**
-     * Тест сортировки студентов по номеру группы в порядке возрастания с использованием {@link BubblesSort}.
-     * <p>
-     * Проверяет, что после вызова метода {@link BubblesSort#sort(List, Comparator)} список студентов
-     * упорядочен по полю {@link Student#getGroup()} в возрастающем порядке (от меньшего номера группы к большему).
-     * Для сравнения используется компаратор,
-     * созданный на основе метода {@link Student#getGroup()}.
-     * <p>
-     * Ожидаемый результат: номера групп в отсортированном списке должны следовать в порядке — 101, 102, 103, 104.
-     *
+     * Тест сортировки студентов по номеру группы в порядке возрастания.
      */
+    @DisplayName("Сортировка студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Description("Проверяет сортировку студентов по возрасту в порядке возрастания (молодые → старшие).")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testSortByGroup_AscendingOrder() {
+    void testSortByGroupAscendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
 
         Comparator<Student> groupComparator = Comparator.comparing(Student::getGroup);
 
         // Act
-        bubblesSort.sort(students, groupComparator);
+        sort.sort(students, groupComparator);
 
         // Assert
         assertEquals(101, students.get(0).getGroup());
@@ -99,12 +87,12 @@ class BubblesSortTest {
         assertEquals(104, students.get(3).getGroup());
     }
     /**
-     * Тест обработки пустой коллекции студентов в алгоритме сортировки {@link BubblesSort}.
-     * <p>
-     * Проверяет, что метод {@link BubblesSort#sort(List, Comparator)} корректно обрабатывает
-     * пустой список без выброса исключений и не изменяет состояние коллекции.
+     * Тест обработки пустой коллекции студентов в алгоритме сортировки.
      */
-
+    @DisplayName("Обработка пустой коллекции студентов в алгоритме сортировки")
+    @Description("Тест обработки пустой коллекции студентов в алгоритме сортировки.")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testSortEmptyList() {
         // Arrange
@@ -112,7 +100,7 @@ class BubblesSortTest {
         Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
 
         // Act & Assert
-        assertDoesNotThrow(() -> bubblesSort.sort(emptyList, nameComparator));
+        assertDoesNotThrow(() -> sort.sort(emptyList, nameComparator));
         assertTrue(emptyList.isEmpty());
     }
 
