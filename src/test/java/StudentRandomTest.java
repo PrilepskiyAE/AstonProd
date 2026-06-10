@@ -1,12 +1,14 @@
+import io.qameta.allure.*;
 import org.aston.prod.model.Student;
 import org.aston.prod.input.StudentRandom;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Epic("Тесты класса StudentRandom")
 class StudentRandomTest {
 
     /**
@@ -23,9 +25,12 @@ class StudentRandomTest {
      *   <li>номер группы находится в диапазоне [1, 9].</li>
      * </ul>
      */
-
+    @DisplayName("Корректность работы приватного метода newRandomStudent() через рефлексию.")
+    @Description("Проверяет работу приватного метода {@code newRandomStudent()} через рефлексию.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testNewRandomStudent_CreatesValidStudent() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void testNewRandomStudentCreatesValidStudent() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
         method.setAccessible(true); // Разрешаем доступ к приватному методу
 
@@ -51,9 +56,12 @@ class StudentRandomTest {
      * Создаётся массив из 10 случайных студентов. Тест убеждается, что не все объекты равны между собой
      * (т. е. генератор действительно выдаёт вариативные данные).
      */
-
+    @DisplayName("Корректность работы приватного метода newRandomStudent() через рефлексию.")
+    @Description("Проверяет работу приватного метода newRandomStudent() через рефлексию.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testMultipleRandomStudents_AreDifferent() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    void testMultipleRandomStudentsAreDifferent() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
         method.setAccessible(true); // Разрешаем доступ к приватному методу
 
@@ -78,7 +86,10 @@ class StudentRandomTest {
      * Выполняется 100 итераций генерации студента. На каждой итерации проверяется, что первый символ
      * поля name — заглавный. Тест подтверждает стабильность соблюдения правила форматирования.
      */
-
+    @DisplayName("Корректность работы что первая буква имени случайного студента всегда заглавная.")
+    @Description("Проверяет, что первая буква имени случайного студента всегда заглавная.")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testNameFormat_FirstLetterCapitalized() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
@@ -96,7 +107,10 @@ class StudentRandomTest {
      * Выполняется 100 итераций генерации студента. Для каждого имени проверяется, что символы
      * со второго и далее — строчные. Тест гарантирует соблюдение формата написания имени.
      */
-
+    @DisplayName("Корректность работы что все буквы имени, кроме первой, являются строчными.")
+    @Description("Проверяет, что все буквы имени, кроме первой, являются строчными.")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testNameFormat_OtherLettersLowercase() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
@@ -117,6 +131,10 @@ class StudentRandomTest {
      * {@code age} находится в интервале [18, 60]. Тест верифицирует корректность генерации возраста.
      */
 
+    @DisplayName("Корректность работы что что возраст случайного студента попадает в допустимый диапазон.")
+    @Description("Проверяет, что возраст случайного студента попадает в допустимый диапазон.")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testAgeRange() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
@@ -135,6 +153,10 @@ class StudentRandomTest {
      * {@code group} находится в интервале [1, 9]. Тест верифицирует корректность генерации номера группы.
      */
 
+    @DisplayName("Корректность работы что номер группы случайного студента попадает в допустимый диапазон.")
+    @Description("Проверяет, что номер группы случайного студента попадает в допустимый диапазон.")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
     void testGroupRange() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = StudentRandom.class.getDeclaredMethod("newRandomStudent");
@@ -163,8 +185,12 @@ class StudentRandomTest {
      * @throws InvocationTargetException если при вызове метода возникла ошибка
      */
 
+    @DisplayName("Корректность работы приватного метода getRandomString() через рефлексию.")
+    @Description("Проверяет работу приватного метода getRandomString() через рефлексию.")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testGetRandomString_PrivateMethod() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    void testGetRandomStringPrivateMethod() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = StudentRandom.class.getDeclaredMethod("getRandomString");
         method.setAccessible(true); // Разрешаем доступ к приватному методу
 

@@ -1,5 +1,7 @@
+import io.qameta.allure.*;
 import org.aston.prod.model.Student;
 import org.aston.prod.model.StudentComparators;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -7,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Epic("Тесты класса StudentComparators")
 class StudentComparatorsTest {
 
     /**
@@ -18,9 +20,12 @@ class StudentComparatorsTest {
      * ожидается порядок: "Anna", "Bob", "Zoe". Тест подтверждает корректность алфавитной сортировки
      * независимо от других полей объекта (возраст, группа).
      */
-
+    @DisplayName("Корректность работы, что компаратор StudentComparators.byName() сортирует студентов в алфавитном порядке.")
+    @Description("Проверяет работу приватного метода  newRandomStudent() через рефлексию.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testByName_SortsAlphabetically() {
+    void testByNameSortsAlphabetically() {
         Student student1 = Student.builder().name("Zoe").age(20).group(1).build();
         Student student2 = Student.builder().name("Anna").age(25).group(2).build();
         Student student3 = Student.builder().name("Bob").age(19).group(3).build();
@@ -41,9 +46,12 @@ class StudentComparatorsTest {
      * критериев сравнения). Тест подтверждает, что компаратор корректно обрабатывает случаи
      * с идентичными именами.
      */
-
+    @DisplayName("Корректность работы, что компаратор  StudentComparators.byName() сортирует студентов в алфавитном порядке.")
+    @Description("Проверяет поведение компаратора  StudentComparators.byName() при одинаковых именах.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testByName_HandlesSameNames() {
+    void testByNameHandlesSameNames() {
         Student student1 = Student.builder().name("Anna").age(20).group(1).build();
         Student student2 = Student.builder().name("Anna").age(25).group(2).build();
 
@@ -63,8 +71,12 @@ class StudentComparatorsTest {
      * для проверки знака результата.
      */
 
+    @DisplayName("Корректность работы, что компаратор  StudentComparators.byName() сортирует студентов в алфавитном порядке.")
+    @Description("Проверяет работу приватного метода newRandomStudent() через рефлексию.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testByName_ReturnsNegativeWhenFirstComesBefore() {
+    void testByNameReturnsNegativeWhenFirstComesBefore() {
         Student student1 = Student.builder().name("Anna").age(20).group(1).build();
         Student student2 = Student.builder().name("Zara").age(25).group(2).build();
 
@@ -81,8 +93,14 @@ class StudentComparatorsTest {
      * для проверки знака результата.
      */
 
+    @DisplayName("Корректность работы,что компаратор StudentComparators.byName() возвращает положительное значение,\n" +
+            " когда первый студент должен идти позже второго в алфавитном порядке.")
+    @Description("Проверяет, что компаратор StudentComparators.byName() возвращает положительное значение,\n" +
+            " когда первый студент должен идти позже второго в алфавитном порядке.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("AQA Engineer Prilepskiy Alexey")
     @Test
-    void testByName_ReturnsPositiveWhenFirstComesAfter() {
+    void testByNameReturnsPositiveWhenFirstComesAfter() {
         Student student1 = Student.builder().name("Zara").age(20).group(1).build();
         Student student2 = Student.builder().name("Anna").age(25).group(2).build();
 
