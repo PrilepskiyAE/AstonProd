@@ -6,6 +6,7 @@ import org.aston.prod.additionalTasks.customSort.SortByAge;
 import org.aston.prod.additionalTasks.customSort.SortByGroup;
 import org.aston.prod.additionalTasks.customSort.SortByLongName;
 import org.aston.prod.additionalTasks.findElements.ElementFind;
+import org.aston.prod.additionalTasks.task3.CustomList;
 import org.aston.prod.additionalTasks.task3.InputCustom;
 import org.aston.prod.input.StudentRandom;
 import org.aston.prod.input.StudentsFromConsole;
@@ -16,9 +17,9 @@ import org.aston.prod.sort.*;
 
 import java.util.*;
 
-public class TestProgramMenu {
+public class MeinMenu {
 
-    private static List<Student> studentList = new ArrayList<>();
+    private static List<Student> studentList = new CustomList<>();
     private static final Scanner scanner = new Scanner(System.in);
     private static Comparator<Student> comparator = StudentComparators.byName();
     private static final StrategyActivator strategyActivator = new StrategyActivator();
@@ -47,7 +48,7 @@ public class TestProgramMenu {
                 String choice = scanner.nextLine();
 
                 switch (choice) {
-                    case "1" -> studentList = new ArrayList<>();
+                    case "1" -> studentList = new CustomList<>();
                     case "2" -> addStudents();
                     case "3" -> comparator = StudentComparators.customComparator(scanner);
                     case "4" -> strategy();
@@ -82,9 +83,10 @@ public class TestProgramMenu {
                         Спасибо за использование, выполнение программы прекращается
                         """);
                 break;
-            } catch (Exception e) {
-                System.out.println("Что-то пошло не так, попробуйте повторить по новой");
             }
+//            catch (Exception e) {
+//                System.out.println("Что-то пошло не так, попробуйте повторить по новой");
+//            }
         }
     }
 

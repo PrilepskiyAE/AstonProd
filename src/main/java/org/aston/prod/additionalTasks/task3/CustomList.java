@@ -19,6 +19,7 @@ public class CustomList<S> implements List<S> {
 
     /**
      * Длина списка
+     *
      * @return возвращает длину
      */
     @Override
@@ -28,6 +29,7 @@ public class CustomList<S> implements List<S> {
 
     /**
      * Пустой список или нет
+     *
      * @return возвращает истину, если пустой
      */
     @Override
@@ -37,7 +39,7 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public boolean contains(Object o) {
-        return internalList.contains(o);
+        return indexOf(o) != 0;
     }
 
     @Override
@@ -57,6 +59,7 @@ public class CustomList<S> implements List<S> {
 
     /**
      * Добавляет элемент в список
+     *
      * @param element элемент
      * @return
      */
@@ -64,9 +67,7 @@ public class CustomList<S> implements List<S> {
     public boolean add(S element) {
         if (size == elements.length) {
             Object[] newElements = new Object[elements.length * 2];
-            for (int i = 0; i < size; i++) {
-                newElements[i] = elements[i];
-            }
+            System.arraycopy(elements, 0, newElements, 0, size);
             elements = newElements;
         }
         elements[size++] = element;
@@ -75,25 +76,19 @@ public class CustomList<S> implements List<S> {
 
     /**
      * Удаление элемента
+     *
      * @param o элемент, который нужно удалить
      * @return возвращает истину, если элемент есть в коллекции
      */
     @Override
     public boolean remove(Object o) {
-        Object[] newElements = new Object[elements.length - 1];
-        int j = 0;
-        boolean isFound = false;
         for (int i = 0; i < size; i++) {
-            if (o.equals(elements[i])) {
-                isFound = true;
-                continue;
+            if (Objects.equals(elements[i], o)) {
+                remove(i);
+                return true;
             }
-            newElements[j] = elements[i];
-            j++;
         }
-        size--;
-        elements = newElements;
-        return isFound;
+        return false;
     }
 
     @Override
@@ -134,32 +129,66 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public S get(int index) {
-        return internalList.get(index);
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        return (S) elements[index];
     }
 
     @Override
     public S set(int index, S element) {
-        return internalList.set(index, element);
+        elements[index] = element;
+        return (S) elements[index];
     }
 
     @Override
     public void add(int index, S element) {
-        internalList.add(index, element);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (size == elements.length) {
+            Object[] newElements = new Object[elements.length * 2];
+            System.arraycopy(elements, 0, newElements, 0, size);
+        }
+        for (int i = size; i > index; i--) {
+            elements[i] = elements[i - 1];
+        }
+        elements[index] = element;
+        size++;
     }
 
     @Override
     public S remove(int index) {
-        return internalList.remove(index);
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        S element = (S) elements[index];
+        for (int i = index; i < size - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+        size--;
+        elements[size] = null;
+        return element;
     }
 
     @Override
     public int indexOf(Object o) {
-        return internalList.indexOf(o);
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(elements[i], o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return internalList.lastIndexOf(o);
+        for (int i = size - 1; i >= 0; i--) {
+            if (Objects.equals(elements[i], o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -174,12 +203,19 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public List<S> subList(int fromIndex, int toIndex) {
-        return internalList.subList(fromIndex, toIndex);
+        if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
+        List<S> sublist = new CustomList<>();
+        for (int i = fromIndex; i <= toIndex; i++) {
+            sublist.add((S) elements[i]);
+        }
+        return sublist;
     }
 
     public void forEach(Consumer<? super S> consumer) {
         for (int i = 0; i < size; i++) {
-            consumer.accept((S)  elements[i]);
+            consumer.accept((S) elements[i]);
         }
     }
 
