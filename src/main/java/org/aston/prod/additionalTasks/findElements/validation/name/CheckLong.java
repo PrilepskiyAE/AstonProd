@@ -30,11 +30,6 @@ public class CheckLong extends CheckName{
      * @param errors список для накопления сообщений об ошибках валидации.
      *              Если имя не соответствует критерию длины, в список добавляется описание ошибки.
      *
-     * @throws NullPointerException если параметр {@code value} равен {@code null}.
-     *                            Метод предполагает, что входная строка валидирована
-     *                            на null до вызова (например, в классе {@link Validation})
-     *
-     * @see String#length()
      */
 
     @Override

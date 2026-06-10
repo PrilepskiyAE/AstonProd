@@ -30,12 +30,6 @@ public class CheckCapitalLetter extends CheckName {
      * @param errors  список для накопления сообщений об ошибках валидации.
      *              Если имя не соответствует критерию, в список добавляется описание ошибки.
      *
-     * @throws StringIndexOutOfBoundsException если параметр {@code value} — пустая строка.
-     *                                       Метод предполагает, что входная строка валидирована
-     *                                       на пустоту до вызова (например, в классе {@link Validation})
-     *
-     * @see Character#isUpperCase(char)
-     * @see String#charAt(int)
      */
 
     @Override

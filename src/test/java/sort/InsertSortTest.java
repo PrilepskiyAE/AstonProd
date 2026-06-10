@@ -1,8 +1,8 @@
 package sort;
 
 import org.aston.prod.model.Student;
-import org.aston.prod.sort.BubblesSort;
 import org.aston.prod.sort.ChoiceSort;
+import org.aston.prod.sort.InsertSort;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
@@ -10,26 +10,33 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ChoiceSortTest extends BaseTest<ChoiceSort> {
-    public ChoiceSortTest() {
-        super(ChoiceSort.class);
+public class InsertSortTest extends BaseTest<InsertSort>{
+
+    public InsertSortTest() {
+        super(InsertSort.class);
     }
 
+    /**
+     * Проверяет сортировку студентов по имени в алфавитном порядке (A→Z).
+     */
     @Test
     void testSortByNameAscendingOrder() {
         // Arrange
         List<Student> students = mock.getStudents();
-
         Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
 
         // Act
         sort.sort(students, nameComparator);
 
         // Assert
-        assertEquals("Анна", students.get(0).getName());
-        assertEquals("Иван", students.get(1).getName());
-        assertEquals("Мария", students.get(2).getName());
-        assertEquals("Пётр", students.get(3).getName());
+        assertEquals("Анна", students.get(0).getName(),
+                "Первый студент должен быть Анна — первая по алфавиту");
+        assertEquals("Иван", students.get(1).getName(),
+                "Второй студент должен быть Иван");
+        assertEquals("Мария", students.get(2).getName(),
+                "Третий студент должен быть Мария");
+        assertEquals("Пётр", students.get(3).getName(),
+                "Четвёртый студент должен быть Пётр — последний по алфавиту");
     }
 
     /**
