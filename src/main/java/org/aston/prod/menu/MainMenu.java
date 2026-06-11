@@ -18,7 +18,23 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+/**
+ * Класс, реализующий интерактивное меню для работы со студентами.
+ * <p>
+ * Предоставляет консольный интерфейс для:
+ * <ul>
+ *   <li>Создания нового списка;</li>
+ *   <li>Выбора способа ввода данных о студентах;</li>
+ *   <li>Выбора критерия сортировки;</li>
+ *   <li>Выбора вида сортировки;</li>
+ *   <li>Сортировки списка;</li>
+ *   <li>Дополнительных заданий;</li>
+ *   <li>Просмотра списка;</li>
+ *   <li>Повторения цикла работы или завершения программы.</li>
+ * </ul>
+ * <p>
+ * Цикл работы повторяется до тех пор, пока пользователь не введёт '9' для завершения.
+ */
 public class MainMenu {
 
     private static List<Student> studentList = new CustomList<>();
@@ -58,6 +74,7 @@ public class MainMenu {
                         if (studentList.size() < 2)
                             System.out.println("Для сортировки в списке должно быть хоть 2 студента");
                         else {
+                            System.out.println("Начинается сортировка списка");
                             strategyActivator.startSort(studentList, comparator);
                             System.out.println("Теперь список отсортирован");
                         }
@@ -149,7 +166,7 @@ public class MainMenu {
                     continue;
                 }
             }
-            System.out.println("Начинаю сортировку списка");
+            System.out.println("Начинается сортировка списка");
             customSort.sort(studentList);
             break;
         }
