@@ -6,7 +6,7 @@ import org.aston.prod.additionalTasks.customSort.SortByAge;
 import org.aston.prod.additionalTasks.customSort.SortByGroup;
 import org.aston.prod.additionalTasks.customSort.SortByLongName;
 import org.aston.prod.additionalTasks.findElements.ElementFind;
-import org.aston.prod.additionalTasks.task3.CustomList;
+import org.aston.prod.additionalTasks.CustomList;
 import org.aston.prod.input.StudentRandom;
 import org.aston.prod.input.StudentsFromConsole;
 import org.aston.prod.input.StudentsFromFile;

@@ -1,4 +1,4 @@
-package org.aston.prod.additionalTasks.task3;
+package org.aston.prod.additionalTasks;
 
 import java.util.*;
 import java.util.function.Consumer;
