@@ -7,7 +7,6 @@ import org.aston.prod.additionalTasks.customSort.SortByGroup;
 import org.aston.prod.additionalTasks.customSort.SortByLongName;
 import org.aston.prod.additionalTasks.findElements.ElementFind;
 import org.aston.prod.additionalTasks.task3.CustomList;
-import org.aston.prod.additionalTasks.task3.InputCustom;
 import org.aston.prod.input.StudentRandom;
 import org.aston.prod.input.StudentsFromConsole;
 import org.aston.prod.input.StudentsFromFile;
@@ -15,7 +14,10 @@ import org.aston.prod.model.Student;
 import org.aston.prod.model.StudentComparators;
 import org.aston.prod.sort.*;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class MeinMenu {
 
@@ -34,6 +36,7 @@ public class MeinMenu {
         while (true) {
             try {
                 System.out.println("""
+                        
                         Нажмите:
                          1 - создание нового списка
                          2 - добавления студентов в существующий список
@@ -42,7 +45,6 @@ public class MeinMenu {
                          5 - сортировка списка
                          6 - дополнительный функционал
                          7 - вывод текущего списка в консоль
-                         8 - заполнение кастомного списка с помощью стримов
                          9 - выход из программы
                         """);
                 String choice = scanner.nextLine();
@@ -70,7 +72,6 @@ public class MeinMenu {
                             studentList.forEach(System.out::println);
                         }
                     }
-                    case "8" -> InputCustom.consoleCustom(scanner);
                     case "9" -> {
                         System.out.println("Спасибо за использование, выполнение программы прекращается");
                         break mainWhile;
@@ -84,9 +85,9 @@ public class MeinMenu {
                         """);
                 break;
             }
-//            catch (Exception e) {
-//                System.out.println("Что-то пошло не так, попробуйте повторить по новой");
-//            }
+            catch (Exception e) {
+                System.out.println("Что-то пошло не так, попробуйте повторить по новой");
+            }
         }
     }
 
@@ -161,10 +162,10 @@ public class MeinMenu {
                     1 - сортировка пузырьком
                     2 - сортировка выбором
                     3 - сортировка вставками
-                    4 - Челночная сортировка
+                    4 - челночная сортировка
                     5 - сортировка Шелла
                     6 - сортировка слиянием
-                    7 - сортировка слиянием
+                    7 - быстрая сортировка
                     """);
             String choice = scanner.nextLine();
             switch (choice) {

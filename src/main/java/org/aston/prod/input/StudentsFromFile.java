@@ -6,6 +6,7 @@ import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.json.JsonMapper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,16 +24,15 @@ public class StudentsFromFile {
      *
      * @param fileName имя файла без расширения (расширение .jsonl добавится автоматически)
      */
-    public static void readFromFile(String fileName, List<Student> studentList) {
+    public static void readFromFile(String fileName, List<Student> students) {
         File file = new File("src/main/resources/" + fileName + ".jsonl");
+        List<Student> studentList = new ArrayList<>();
 
-        // Проверка наличия файла
         if (!file.exists()) {
             System.out.println("Файл не найден: " + file.getPath());
             return;
         }
 
-        // Проверка не пустоты файла
         if (file.length() == 0) {
             System.out.println("Файл пуст: " + file.getPath());
             return;
@@ -57,6 +57,8 @@ public class StudentsFromFile {
                 }
             }
         }
+        studentList.stream()
+                .forEach(students::add);
     }
 
     /**
@@ -76,7 +78,6 @@ public class StudentsFromFile {
         if (name == null || name.trim().isEmpty()) {
             return false;
         }
-        // Только буквы (любого алфавита)
         if (!name.matches("^[\\p{L}]+$")) {
             return false;
         }

@@ -1,9 +1,7 @@
 package org.aston.prod.additionalTasks.task3;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.stream.Collector;
 
 public class CustomList<S> implements List<S> {
@@ -39,17 +37,44 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public boolean contains(Object o) {
-        return indexOf(o) != 0;
+        return indexOf(o) != -1;
     }
 
     @Override
     public Iterator<S> iterator() {
-        return internalList.iterator();
+        return new Iterator<S>() {
+            private int cursor = 0;
+            private int lastRet = -1;
+
+            @Override
+            public boolean hasNext() {
+                return cursor < size;
+            }
+
+            @Override
+            public S next() {
+                if (cursor >= size) {
+                    throw new NoSuchElementException();
+                }
+                lastRet = cursor;
+                return (S) elements[cursor++];
+            }
+
+            @Override
+            public void remove() {
+                if (lastRet < 0) {
+                    throw new IllegalStateException();
+                }
+                CustomList.this.remove(lastRet);
+                cursor = lastRet;
+                lastRet = -1;
+            }
+        };
     }
 
     @Override
     public Object[] toArray() {
-        return internalList.toArray();
+        return Arrays.copyOf(elements, size);
     }
 
     @Override
@@ -93,22 +118,49 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return internalList.containsAll(c);
+        if (c == null) throw new NullPointerException();
+        for (Object s : c) {
+            if (!contains(s))
+                return false;
+        }
+        return true;
     }
 
     @Override
     public boolean addAll(Collection<? extends S> c) {
-        return internalList.addAll(c);
+        if (c == null) throw new NullPointerException();
+        if (c.isEmpty()) return false;
+        boolean result = false;
+        for (S s : c) {
+            add(s);
+            result = true;
+        }
+        return result;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends S> c) {
-        return internalList.addAll(index, c);
+        if (c == null) throw new NullPointerException();
+        if (c.isEmpty()) return false;
+        boolean result = false;
+        for (S s : c) {
+            add(index++, s);
+            result = true;
+        }
+        return result;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return internalList.removeAll(c);
+        if (c == null) throw new NullPointerException();
+        boolean result = false;
+        for (Object s : c) {
+            while (contains(s)) {
+                remove(s);
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
@@ -122,7 +174,7 @@ public class CustomList<S> implements List<S> {
     @Override
     public void clear() {
         for (int i = 0; i < size; i++) {
-            remove(elements[i]);
+            elements[i] = null;
         }
         size = 0;
     }
@@ -137,8 +189,12 @@ public class CustomList<S> implements List<S> {
 
     @Override
     public S set(int index, S element) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        S oldElement = get(index);
         elements[index] = element;
-        return (S) elements[index];
+        return oldElement;
     }
 
     @Override
@@ -149,6 +205,7 @@ public class CustomList<S> implements List<S> {
         if (size == elements.length) {
             Object[] newElements = new Object[elements.length * 2];
             System.arraycopy(elements, 0, newElements, 0, size);
+            elements = newElements;
         }
         for (int i = size; i > index; i--) {
             elements[i] = elements[i - 1];
@@ -207,12 +264,13 @@ public class CustomList<S> implements List<S> {
             throw new IndexOutOfBoundsException();
         }
         List<S> sublist = new CustomList<>();
-        for (int i = fromIndex; i <= toIndex; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             sublist.add((S) elements[i]);
         }
         return sublist;
     }
 
+    @Override
     public void forEach(Consumer<? super S> consumer) {
         for (int i = 0; i < size; i++) {
             consumer.accept((S) elements[i]);
@@ -233,15 +291,9 @@ public class CustomList<S> implements List<S> {
     }
 
     public static <S> Collector<S, CustomList<S>, CustomList<S>> customCollector() {
-        return Collector.of(
-                CustomList::new,
-                CustomList::add,
-                (list1, list2) -> {
-                    list1.add((S) list2);
-                    return list1;
-                },
-                Function.identity(),
-                Collector.Characteristics.UNORDERED
-        );
+        return Collector.of(CustomList::new, CustomList::add, (list1, list2) -> {
+            list1.addAll(list2);
+            return list1;
+        });
     }
 }

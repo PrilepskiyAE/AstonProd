@@ -4,6 +4,7 @@ import org.aston.prod.model.Student;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 /**
  * Утилитарный класс для генерации случайных объектов {@link Student}.
@@ -14,9 +15,9 @@ public abstract class StudentRandom {
     private static final Random random = new Random();
 
     public static void addRandomStudentsInList(List<Student> studentList, int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            studentList.add(newRandomStudent());
-        }
+        Stream.generate(StudentRandom::newRandomStudent)
+                .limit(quantity)
+                .forEach(studentList::add);
     }
 
     /**
