@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class MeinMenu {
+public class MainMenu {
 
     private static List<Student> studentList = new CustomList<>();
     private static final Scanner scanner = new Scanner(System.in);
