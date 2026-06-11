@@ -78,6 +78,6 @@ public class CustomSort {
         long time = System.nanoTime();
         customSortStrategy.sort(studentList, strategyActivator);
         time = (System.nanoTime() - time) / 1_000_000;
-        System.out.println("Сортировка заняла " + time + " мс");
+        System.out.println("Сортировка списка из "+ studentList.size() + " элементов заняла " + time + " мс");
     }
 }
