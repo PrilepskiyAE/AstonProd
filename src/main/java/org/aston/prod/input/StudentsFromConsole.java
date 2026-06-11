@@ -7,6 +7,7 @@ import org.aston.prod.model.exception.NoCorrectName;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * Класс для ручного ввода студентов с консоли.
@@ -66,14 +67,14 @@ public class StudentsFromConsole {
                 continue;
             }
 
-            // Все проверки пройдены — создаём студента и добавляем в список
             try {
                 Student student = Student.builder()
                         .name(name)
                         .age(age)
                         .group(group)
                         .build();
-                students.add(student);
+                Stream.of(student)
+                        .forEach(students::add);
             } catch (NoCorrectName | NoCorrectAge | NoCorrectGroup e) {
                 System.out.printf("Строка %d: ошибка создания нового студента. %s%n", lineNumber, e.getMessage());
                 continue;
@@ -81,7 +82,6 @@ public class StudentsFromConsole {
             System.out.println("Студент добавлен.");
         }
 
-        // Подсчитываем количество новых добавленных студентов
         int addedCount = students.size() - initialSize;
         System.out.printf("Всего введено корректных студентов: %d%n", addedCount);
     }

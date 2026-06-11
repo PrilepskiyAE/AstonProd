@@ -6,6 +6,7 @@ import org.aston.prod.additionalTasks.customSort.SortByAge;
 import org.aston.prod.additionalTasks.customSort.SortByGroup;
 import org.aston.prod.additionalTasks.customSort.SortByLongName;
 import org.aston.prod.additionalTasks.findElements.ElementFind;
+import org.aston.prod.additionalTasks.task3.CustomList;
 import org.aston.prod.input.StudentRandom;
 import org.aston.prod.input.StudentsFromConsole;
 import org.aston.prod.input.StudentsFromFile;
@@ -13,11 +14,14 @@ import org.aston.prod.model.Student;
 import org.aston.prod.model.StudentComparators;
 import org.aston.prod.sort.*;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
-public class TestProgramMenu {
+public class MainMenu {
 
-    private static List<Student> studentList = new ArrayList<>();
+    private static List<Student> studentList = new CustomList<>();
     private static final Scanner scanner = new Scanner(System.in);
     private static Comparator<Student> comparator = StudentComparators.byName();
     private static final StrategyActivator strategyActivator = new StrategyActivator();
@@ -32,6 +36,7 @@ public class TestProgramMenu {
         while (true) {
             try {
                 System.out.println("""
+                        
                         Нажмите:
                          1 - создание нового списка
                          2 - добавления студентов в существующий список
@@ -45,7 +50,7 @@ public class TestProgramMenu {
                 String choice = scanner.nextLine();
 
                 switch (choice) {
-                    case "1" -> studentList = new ArrayList<>();
+                    case "1" -> studentList = new CustomList<>();
                     case "2" -> addStudents();
                     case "3" -> comparator = StudentComparators.customComparator(scanner);
                     case "4" -> strategy();
@@ -79,7 +84,8 @@ public class TestProgramMenu {
                         Спасибо за использование, выполнение программы прекращается
                         """);
                 break;
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 System.out.println("Что-то пошло не так, попробуйте повторить по новой");
             }
         }
@@ -156,10 +162,10 @@ public class TestProgramMenu {
                     1 - сортировка пузырьком
                     2 - сортировка выбором
                     3 - сортировка вставками
-                    4 - Челночная сортировка
+                    4 - челночная сортировка
                     5 - сортировка Шелла
                     6 - сортировка слиянием
-                    7 - сортировка слиянием
+                    7 - быстрая сортировка
                     """);
             String choice = scanner.nextLine();
             switch (choice) {
