@@ -1,6 +1,5 @@
 package org.aston.prod.additionalTasks.task3;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -91,7 +90,9 @@ public class CustomList<S> implements List<S> {
             newElements[j] = elements[i];
             j++;
         }
-        size--;
+        if (isFound) {
+            size--;
+        }
         elements = newElements;
         return isFound;
     }
